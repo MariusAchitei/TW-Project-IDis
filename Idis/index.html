@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <h2 class="logo">
+                IDis
+            </h2>
+            <div class="search-bar">
+                <img src="icon/search.svg" class="icon2">
+                <input type="search" placeholder="search for review...">
+            </div>
+            <div class="create" >
+                <label for="creatPost" > <a class="btn btn-primary" href="login.html">Logout</a></label>
+                <div class="profile-phots">
+                    <img src="img/profile-1.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container main-container">
+            <div class="main-left">
+              <div class="profile">
+                <div class="profile-phots">
+                    <img src="img/profile-1.jpg" alt="">
+                </div> 
+                <div class="hendel">
+                    <h4>Sociu Lucian </h4>
+                    <p class="text-gry">@sociufulesti</p>
+                </div>  
+              </div>
+
+              <div class="side-bar"> 
+                <a class="menu-item active" >
+                    <span><img src="icon/house-door.svg" class="icon1"></span><h3>home</h3>
+                </a>
+                <a class="menu-item" id="notifice">
+                    <span> <img src="icon/bell.svg" class="icon1"></span><h3>notifications</h3>
+                    <div class="notification">
+                        <div class="NP">
+                            <div class="profile-phots">
+                                <img src="img/p2.jpg" alt="">
+                            </div> 
+                            <div class="notification-body">
+                                <b>maria</b> reacted to your review 
+                                <small class="text-gry"> 1 minute ago</small>                              
+                            </div>
+                        </div>
+                        <div class="NP">
+                            <div class="profile-phots">
+                                <img src="img/p3.png" alt="">
+                            </div> 
+                            <div class="notification-body">
+                                <b>alex cocostarc</b> commented on your review
+                                <small class="text-gry"> 4 minutes ago</small>                              
+                            </div>
+                        </div>
+                        <div class="NP">
+                            <div class="profile-phots">
+                                <img src="img/p4.png" alt="">
+                            </div> 
+                            <div class="notification-body">
+                                <b>cosmin costache</b>  liked your review
+                                <small class="text-gry"> 10 minutes ago</small>                              
+                            </div>
+                        </div>
+                        <div class="NP">
+                            <div class="profile-phots">
+                                <img src="img/p5.png" alt="">
+                            </div> 
+                            <div class="notification-body">
+                                <b>david</b> liked your review
+                                <small class="text-gry"> 20 minutes ago</small>                              
+                            </div>
+                        </div>
+                        <div class="NP">
+                            <div class="profile-phots">
+                                <img src="img/profile-4.jpg" alt="">
+                            </div> 
+                            <div class="notification-body">
+                                <b>angela paraschiv</b> reacted to your review
+                                <small class="text-gry"> 1 hour ago</small>                              
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a class="menu-item"  id="message">
+                    <span><img src="icon/chat-left-dots.svg" class="icon1"></span><h3>message</h3>
+                </a>
+                <a class="menu-item " >
+                    <span><img src="icon/graph-up-arrow.svg" class="icon1"></span><h3>analytics</h3>
+                </a>
+                <a class="menu-item " id="themeMenu">
+                    <span><img src="icon/palette.svg" class="icon1"></span><h3>theme</h3>
+                </a>
+                <a class="menu-item g" >
+                    <span><img src="icon/gear.svg" class="icon1"></span><h3>setings</h3>
+                </a>   
+
+                <label for="creatPost" class="btn btn-primary" >create review</label>
+         
+              </div>
+
+            </div>
+
+            <div class="main-mid">
+                <form class="creatPost">
+                    <div class="profile-phots">
+                        <img src="img/profile-1.jpeg" alt="">
+                    </div>
+                   <div class="text-post">
+                      <input type="text" placeholder="write a review" class="creatPost">
+                   </div>
+
+                   <div>
+                       <input type="submit" value="post" class="btn btn-primary">
+                   </div>
+                </form>
+
+                <div class="feeds">
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-phots">
+                                    <img src="img/p7.png" alt="">                                    
+                                </div>
+                                <div class="info">
+                                    <h3>costel biju</h3>
+                                    <small>apples</small>
+                                </div>                               
+                            </div>
+                            <span class="edit">
+                                <img src="icon/three-dots.svg" class="icon1">
+                            </span>
+                        </div>
+                            <div class="feed-phots">
+                                <img src="img/feed1.jpg" alt="">
+                            </div>
+                            <div class="action-buttons">
+                                <div class="inter-action-button">
+                                    <span><img src="icon/heart.svg" class="icon2"></span>
+                                    <span><img src="icon/chat-dots.svg" class="icon2"></span>
+                                </div>
+                                <div class="book-mark">
+                                   <span><img src="icon/bookmark.svg" class="icon2"></span>
+                                </div>
+                            </div>
+                            <div class="liked-by">
+                                <span><img src="img/p2.jpg" alt=""></span>
+                                <span><img src="img/p4.png" alt=""></span>
+                                <span><img src="img/p5.png" alt=""></span>
+                                <p>liked by <b>daniel</b> and<b> 105 others pepoles</b></p>                                                                  
+                            </div>
+                            <div class="caption">
+                                <p><b>angela paraschiv</b> Lorem, ipsum dolor sit amet consectetur. <span class="hash-teg">#lifestyle</span></p>
+                            </div> 
+                            <div class="text-gry comment">view all comments</div> 
+                    </div> 
+                 </div>
+            </div>
+
+            <div class="main-right">
+                <div class="messages" id="message-box">
+                    <div class="message-heading">
+                        <h4>message</h4><span><img src="icon/pencil-square.svg" class="icon1"></span>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <span><img src="icon/search.svg" class="icon2"></span>
+                        <input type="search" placeholder="search message" class="message-search">
+                    </div>
+                    <div class="category">
+                        <h6 class="recent">recent</h6>
+                        <h6 class="pr-requst">request</h6>
+                    </div>
+                    <div class="message">
+                        <div class="profile-phots">
+                            <div class="ac"></div>
+                            <img src="img/f3.png" alt="">
+                        </div>
+                        <div class="messgae-body">
+                            <h5>lionel messi</h5>
+                            <p class="text-gry">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>                    
+                    <div class="message">
+                        <div class="profile-phots">
+                            <img src="img/m1.jpg" alt="">
+                        </div>
+                        <div class="messgae-body">
+                            <h5>oana cucoana</h5>
+                            <p class="text-gry">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>                    
+                    <div class="message">                        
+                        <div class="profile-phots">
+                            <div class="ac"></div>
+                            <img src="img/m2.jpeg" alt="">
+                        </div>
+                        <div class="messgae-body">
+                            <h5>dani mocanu</h5>
+                            <p class="text-gry">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>                    
+                    <div class="message">
+                        <div class="profile-phots">
+                            <img src="img/m3.jpg" alt="">
+                        </div>
+                        <div class="messgae-body">
+                            <h5>adrian minune</h5>
+                            <p class="text-gry">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>                    
+                    <div class="message ">
+                        <div class="profile-phots">
+                            <div class="ac"></div>
+                            <img src="img/m4.png" alt="">
+                        </div>
+                        <div class="messgae-body">
+                            <h5>copilul de aur</h5>
+                            <p class="text-gry">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>                    
+                </div>           
+            </div>
+        </div>
+    </main>
+
+    <div class="theme">
+        <div class="card">
+            <h2>CUSTOMIZE yuor site</h2>
+            <p class="text-gry">manage your font, color, and backgroud</p>
+
+
+            <div class="font-siz">
+                <div>
+                    <h6>aa</h6>
+                    <div class="choose-font-size">
+                        <span class="font1"></span>
+                        <span class="font2 active"></span>
+                        <span class="font3"></span>
+                        <span class="font4"></span>
+                        <span class="font5"></span>
+                    </div>
+                    <h3>aa</h3>
+                </div>               
+            </div>
+
+        <div class="color">
+            <h3>color</h3>
+            <div class="choose-color">
+                <span class="color1"></span>
+                <span class="color2"></span>
+                <span class="color3 active"></span>
+                <span class="color4"></span>
+                <span class="color5"></span>
+            </div>
+        </div>
+
+        <div class="background">
+            <h3>backgorund</h3>
+            <div class="chosse-backgorund">
+                <div class="bg1 active">
+                    <span></span>
+                    <h5 class="bg1">light</h5>
+                </div>
+                <div class="bg2">
+                    <span></span>
+                    <h5 class="bg2">dark</h5>
+                </div>
+                <div class="bg3">
+                    <span></span>
+                    <h5 class="bg3">black</h5>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+   
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
