@@ -9,12 +9,295 @@
 </head>
 
 <body>
-    <h1>Documentatie proiect "I Dislike It!"</h1>
-    <h2>1.Introducere</h2>
-    <h3>1.1.Scop</h3>
-    <p>Scopul aplicatiei este de a oferi utilizatorilor o platforma prin care sa isi poata impartasi opiniile despre o
-        gama larga de produse si servicii</p>
-
+    <article>
+        <header>
+            <h1>Documentatie proiect "I Dislike It!"</h1>
+        </header>
+        <section role="contentinfo">
+            <h2>Members</h2>
+            <ul>
+                <li>Sociu Lucian</li>
+                <li>Achitei Marius Dumitru</li>
+            </ul>
+        </section>
+        <section>
+            <h2>1.Introducere</h2>
+            <!-- <h3>1.1.Scop</h3>
+            <p>Scopul aplicatiei este de a oferi utilizatorilor o platforma prin care sa isi poata impartasi opiniile despre o
+                gama larga de produse si servicii</p> -->
+            <h3>1.1 Scop</h3>
+            <p>
+                Această documentație descrie cerințele software pentru o aplicație web care gestionează obiecte (de
+                exemplu,
+                produse
+                comercializate de un anumit magazin, apartamente de închiriat într-o anumită zonă, etc.) și artefacte
+                abstracte/digitale
+                (precum prelegeri, limbaje de programare, jocuri electronice, servicii web) favorite sau detestate de
+                către
+                o
+                persoană
+                sau un grup de persoane. Aplicația va permite utilizatorilor să gestioneze și să ordoneze aceste
+                entități în
+                funcție
+                de
+                diferitele lor caracteristici, precum categoria, contextul de utilizare, prețul și altele.
+            </p>
+            <h3>1.2 Convenții de documentare</h3>
+            <p>
+                Documentația va folosi standardele și convențiile tipografice așteptate într-un document de specificații
+                software.
+                Prioritățile de nivel superior vor fi moștenite de către cerințele detaliate. De asemenea, vor fi
+                folosite
+                highlight-uri
+                pentru a evidenția anumite secțiuni ale documentului.
+            </p>
+            <h3>1.3 Publicul țintă și sugestii de lectură</h3>
+            <p>
+                Această documentație este destinată dezvoltatorilor, managerilor de proiecte, personalului de marketing,
+                utilizatorilor,
+                testerilor și scriitorilor de documentație. Se recomandă urmărirea secțiunilor în ordinea următoare:
+                prezentare
+                generală, descrierea produsului, cerințe funcționale, interfața cu utilizatorul și altele.
+            </p>
+            <h3>1.4 Scopul produsului</h3>
+            <p>
+                Scopul acestei aplicații este de a permite utilizatorilor să gestioneze și să ordoneze diferite entități
+                în
+                funcție
+                de
+                diferite caracteristici, precum categoria, contextul de utilizare, prețul și altele. Aceasta poate fi
+                folosită
+                pentru a
+                gestiona orice tip de obiecte sau artefacte abstracte/digitale, cum ar fi produsele comercializate de un
+                magazin
+                sau
+                prelegerile realizate de un profesor.
+            </p>
+            <h3>1.5 Referințe</h3>
+            <p>
+                Nu există referințe pentru această aplicație.
+            </p>
+        </section>
+        <section>
+            <h2>2 Descrierea generală</h2>
+            <h3>2.1 Perspectiva produsului</h3>
+            <p>
+                Această aplicație web este o aplicație standalone care va fi utilizată pentru gestionarea și ordonarea
+                diferitelor
+                entități. Aceasta poate fi utilizată într-o varietate de domenii, cum ar fi magazinele online,
+                închirierea
+                de
+                apartamente și altele.
+            </p>
+            <h3>2.2 Funcții ale produsului</h3>
+            <p>
+                Principalele funcții ale aplicației includ gestionarea și ordonarea diferitelor entități, precum și
+                generarea de
+                inventare și statistici diverse, ce pot fi exportate în formate deschise.
+            </p>
+            <h3>2.3 Clase de utilizatori și caracteristici</h3>
+            <p>
+                Utilizatorii aplicației vor fi clasificați in functie de responsabilitati in doua categorii:
+            <ul>
+                <li>admin</li>
+                <li>user</li>
+            </ul>
+            </p>
+            <h3>2.4 Mediu de operare</h3>
+            <p>
+                Aplicatia va opera in mediul online prin intermediul unui browser modern (ex: Google Chrome, Mozilla
+                Firefox,
+                Microsoft Edge, etc.) cu capacitati de interpretare javascript. Fiind o aplicatie de tip Web sistemul de
+                operare
+                al masinii nu este o constrangere acesta putand fi utilizat pe platforme precum Windows, Linux, macOS,
+                android,
+                IOS, etc.
+            </p>
+            <h3>2.5 Constrangeri ale design-ului si ale implementarii</h3>
+            <p>
+                Aplicatia fiind dezvoltata in cadrul cursului de Tehnologii Web aceasta trebuie sa se supuna unor
+                constrangeri
+                specifice unui mediu de invatare:
+            <ul>
+                <li>Interzicerea folosirii unor framework-uri pentru realizarea back-end-ului (express)</li>
+                <li>Interzicerea folosirii unor librarii (React)</li>
+            </ul>
+            </p>
+            <h3>2.6 Documentatie pentru utilizatori</h3>
+            <p>
+                Aplicatia este construita cu o interfata si functionalitate intuitiva, astfel utilizatorii nu vor avea
+                nevoie de
+                instructiuni suplimentare pentru operarea acesteia.
+            </p>
+        </section>
+        <section>
+            <h2>3 Dependinte de interfete externe</h2>
+            <h3>3.1 User Interface</h3>
+            <p>In continuare vom prezenta fiecare pagina din cadrul aplicatiei</p>
+            <h4>Home Page</h4>
+            <img src="screenshots/homepage.jpg" alt="">
+            <h4>Profile Page</h4>
+            <img src="screenshots/profile.jpg" alt="">
+            <h4>Product Page</h4>
+            <img src="screenshots/product.jpg" alt="">
+            <h4>Login Page</h4>
+            <img src="screenshots/login.jpg" alt="">
+            <h4>Register Page</h4>
+            <img src="screenshots/register.jpg" alt="">
+            <h4>Create Review Page</h4>
+            <img src="screenshots/create-review.jpg" alt="">
+            <h3>3.2 Hardware Interface</h3>
+            <p>Interactiunile dintre diferitele functionalitati ale proiectului vor fi administrate de serverul
+                implementat
+                in NodeJs prin trimiterea si primirea de date cum ar fi informatii de autentificare, produse, categorii
+                de
+                produse, review-uri etc. Vom folosi o baza de date relationala din familia SQL folosind MySQL</p>
+            <h3>3.3 Software Interface</h3>
+            <p>Pentru a construi arhitectura aplicatiei am folosit urmatoarele tehnologii:</p>
+            <ul>
+                <li><b>NodeJs</b> pentru a implementa partea de backend a server-ului.</li>
+                <li><b>HTML+CSS</b> in implementarea frontend-ului aplicatiei.</li>
+                <li><b>JavaScript</b> in implementarea functionalitatilor la nivel de UX si pentru modelarea datelor
+                    introduse de utilizator.</li>
+                <li><b>MySQL</b> pentru administarea bazei de date </li>
+            </ul>
+            <h3>3.4 Comunication Interface</h3>
+            <p>Pentru a asigura o comunicare adecvata, aplicatia trebuie sa ruleze in browswe si trebuie sa aiba
+                conexiune
+                la internet. Aplicatia trebuie sa fie conectata la o baza date pentru a returna constant rezultate
+                corespunzatoare cerintelor utilizatorului. Comunicarea din cadrul aplicatiei se va reazliza implementand
+                protocolul HTTP si verbele specifice</p>
+        </section>
+        <section>
+            <h2>4 Functionalitati ale sistemului</h2>
+            <h3>4.1 Sistem pentru admistrarea identitatii utilizatorilor (Register/Login)</h3>
+            <h4>4.1.1 Descriere</h4>
+            <p>
+                Un sistem de tip register / login este o modalitate de a permite utilizatorilor să se înregistreze și să
+                se
+                autentifice
+                într-o aplicație web sau mobilă. Acesta constă în două părți principale:
+            <ul>
+                <li>
+                    Pagina de înregistrare: Aceasta este pagina unde utilizatorii își creează un cont nou în sistem. Pe
+                    această
+                    pagină,
+                    utilizatorii vor fi rugați să introducă un nume de utilizator unic, o adresă de e-mail validă și o
+                    parolă
+                    securizată.
+                    Unele sisteme pot solicita și alte informații, cum ar fi numele complet, data nașterii sau o imagine
+                    de
+                    profil.
+                    După ce
+                    utilizatorii completează toate câmpurile necesare și apasă pe butonul "Înregistrare", sistemul va
+                    verifica
+                    dacă
+                    informațiile introduse sunt valide și unice, apoi va crea contul nou.
+                </li>
+                <li>
+                    Pagina de autentificare: După înregistrare, utilizatorii trebuie să se autentifice pentru a accesa
+                    contul
+                    lor.
+                    Pe pagina
+                    de autentificare, utilizatorii vor fi rugați să introducă numele de utilizator și parola asociate
+                    contului
+                    lor.
+                    După ce
+                    aceste informații sunt introduse, sistemul va verifica dacă acestea sunt valide și corespund unui
+                    cont
+                    existent.
+                    Dacă
+                    autentificarea reușește, utilizatorii vor fi redirecționați către pagina principală a aplicației,
+                    unde
+                    pot
+                    accesa
+                    funcționalitățile disponibile doar pentru utilizatorii autentificați.
+                </li>
+                autentificarea reușește, utilizatorii vor fi redirecționați către pagina principală a aplicației, unde
+                pot
+                accesa
+                funcționalitățile disponibile doar pentru utilizatorii autentificați.
+                </li>
+            </ul>
+            Din motive de securitate parolele utilizatorilor vor si stocate in baza de date sub forma de Hash, iar la
+            inregistrare fiecarui user ii va fi creeat un SALT unic care va cripta suplimentar si unic parola.
+            </p>
+            <h4>4.1.2 Secventa de stimul si raspuns</h4>
+            <p>Toate funcționale suplimentare depind de aceasta secventa de registe-login.</p>
+            <p>
+                Pagina de login este prima pagina pe care utilizatorul o intalneste atunci cand acceseaza aplicatia.
+            </p>
+            <p>
+                Pagina de register poate fi accesata din pagina de login prin intermediul butonului "Do you need an
+                account".
+            </p>
+            <h3>4.2 Navigare printre obiecte/servicii deja existente pe site</h3>
+            <h4>4.2.1 Descriere</h4>
+            <p>Toate produsele existente pe site vor putea fi identificate prin cuvinte cheie sau prin categoriile din
+                care
+                acestea fac parte.</p>
+            <p>Utilizatorul poate naviga printre categoriile existente pe site pentru a gasi descieri, specificatii si
+                in
+                special <b>review-uri</b> de la alti utilizatori, prin intermediul search bar-ului sau accesand
+                sectiunea de
+                categorii.
+            </p>
+            <h4>4.2.2 Secventa de stimuli si raspuns</h4>
+            <p>Search bar-ul este disponibil pe toate paginile aplicatiei in partea de sus amplasata pe nav-bar.</p>
+            <p>Sectiunea de categorii poate fi accesata prin intermediul butonuluii categories din pagina de start sau
+                prin
+                accesarea categoriei unui produs.</p>
+            <p>
+                Pe pagina fiecarui produs se regasesc mai multe sectiuni:
+            <ul>
+                <li>Descriere</li>
+                <li>Rating (media notelor acordate de alti utilizatori)</li>
+                <li>Specificatii</li>
+                <li>Caracteristici</li>
+                <li>Review-uri (pareri expuse de alti utilizatori care au luat contact cu produsul)</li>
+            </ul>
+            </p>
+            <h3>4.3 Adaugare de review-uri proprii sau produse</h3>
+            <h4>4.3.1 Descriere</h4>
+            <p>Pentru ca utilizatorii sa-si poate impartasi intre ei experienta folosirii sau detinerii unui anumit
+                produs
+                aplicatia implementeaza functionalitatea de a aduga un review unui produs deja existent. In cazul in
+                care
+                produsul in cauza nu exista deja in catalogul site-ului user-ul in cauza il poate adauga cu usurinta
+                prin
+                intermediul unui formular </p>
+            <h4>4.3.2 Secventa de stimuli si raspuns</h4>
+            <p>Butoane pentru adaugarea unui review pot fi gasite pe majoritatea paginilor in puncte de interes.</p>
+            <p>Odata accesate acestea vor redirecta utilizatorul catre un formular in care se vor adauga detaliile
+                review-ului:
+            </p>
+            <ul>
+                <li>Produsul caruia i se adreseaza</li>
+                <li>Titlul</li>
+                <li>Rating-ul pe care acesta doreste sa il acorde produsului</li>
+                <li>Textul</li>
+            </ul>
+            <p>Daca produsul caruia i se adreseaza review-ul nu se afla in baza de date se va apela la un formular de
+                adaugare a
+                unui produs</p>
+            <h3>4.4 Creearea de clasamente pentru cele mai detestabile entitati</h3>
+            <h4>4.4.1 Descriere</h4>
+            <p>In cadrul fiecarei categorii va exista o sectiune in care produsele vor fi ordonate dupa anumite
+                criterii,
+            </p>
+            <p>aceste clasamente vor putea fi disponibile si ca flux de date RSS </p>
+            <h3>4.5 Generarea de inventare si statistici diverse</h3>
+            <h4>4.5.1 La nivel de aplicatie se vor genera inventare si statistici diverse analizand animite aspecte ale
+                activitatii useri-lor si ale experientele lor cu produsele din site.
+                Urmand ca acestea sa poata fi accesate de orice categorie de user (admin sau utilizator obisnuit),
+                pentru
+                accesare se va opta la exportarea datelor in formate deschise preecum CSV, DocBook sau PDF.
+            </h4>
+            <h4>4.5.2 Secventa de stimuli si raspuns</h4>
+            <p>Pentru a accesa aceasta functionalitate, utilizatorii vor intra in sectiunea de analitycs si vor selecta
+                statistica dorita si tipul de export preferat. </p>
+        </section>
+    </article>
 </body>
 
 </html>
