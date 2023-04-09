@@ -247,7 +247,7 @@ ul.interests {
   text-decoration: none;
   background-color: #a0a19e;
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 991px) {
   .profile-container {
     display: flex;
     flex-direction: column;

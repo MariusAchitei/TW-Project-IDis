@@ -64,8 +64,11 @@ nav .logo {
 
   border-radius: 20px;
   box-sizing: border-box;
-  height: 500px;
-  width: 320px;
+  height: fit-content;
+  width: 500px;
+}
+.form label {
+  color: var(--color-light);
 }
 
 .title {
@@ -82,6 +85,7 @@ nav .logo {
   font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
+  margin-bottom: 2rem;
 }
 
 .input-container {

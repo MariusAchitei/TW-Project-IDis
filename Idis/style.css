@@ -474,7 +474,8 @@ main {
 }
 /*......................THEME CUSTOMIZE..END................... */
 
-@media (max-width: 1220px) {
+/* TABLET  and PHONE*/
+@media (max-width: 991px) {
   .container {
     width: 96%;
   }
@@ -498,10 +499,6 @@ main {
   .card {
     width: 80%;
   }
-}
-
-/* TABLET  and PHONE*/
-@media (max-width: 991px) {
   .container {
     gap: 0;
   }

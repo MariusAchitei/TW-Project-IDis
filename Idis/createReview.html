@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Review</title>
-    <link rel="stylesheet" href="test.css">
+    <!-- <link rel="stylesheet" href="test.css"> -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="createReview.css">
 </head>
@@ -23,13 +23,12 @@
     </nav>
     <div class="form">
         <form>
+            <div class="title">Create Review</div>
+            <div class="subtitle">Enter details</div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
+                <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
                 <select class="form-control" id="exampleFormControlSelect1">
+                    <option value="" selected disabled>Select Product</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -38,8 +37,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Example multiple select</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
+                <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option value="" selected disabled>Select Rating</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -48,10 +48,17 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="exampleFormControlInput1">Review Title</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter a title">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Review</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="100"
+                    placeholder="Enter your review">Enter your review
+                </textarea>
             </div>
         </form>
+        <a href="product.html"><button type="text" class="submit">Submit</button></a>
     </div>
 </body>
 
