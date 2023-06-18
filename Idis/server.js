@@ -20,15 +20,14 @@ const sessionMiddleware = clientSessions({
 
 const server = http.createServer((req, res) => {
   let { method, url } = req;
-
   sessionMiddleware(req, res, () => {
-    if (method === "POST" && url === "/login") {
-      loginController.loginPost(req, res);
-    } else if (method === "POST" && url === "/register") {
-      loginController.registerPost(req, res);
-    } else if (method === "GET" && url === "/") {
-      Utils.redirect(res, "/views/login.html");
-    } else if (method === "GET" || method === "HEAD") {
+    Utils.post("/login", req, res, loginController.loginPost);
+
+    Utils.post("/register", req, res, loginController.registerPost);
+
+    Utils.redirect(method, url, "GET", "/", "/views/login.html", res);
+
+    if (method === "GET" || method === "HEAD") {
       requireAuthentication(req, res, () => {
         Utils.sendResources(req, res, url);
       });

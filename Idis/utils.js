@@ -32,12 +32,18 @@ Utils.sendResources = (req, res, url) => {
   });
 };
 
-Utils.redirect = (redirectedMethod, redirectedUrl, targetUrl, req, res) => {
-  let { methodFrom, urlFrom } = req;
-  console.log(`Vin de la ${methodFrom} ${urlFrom}`);
-  console.log(`Redirectez la ${redirectedMethod} ${redirectedUrl}`);
+Utils.redirect = (
+  methodFrom,
+  urlFrom,
+  redirectedMethod,
+  redirectedUrl,
+  targetUrl,
+  res
+) => {
+  // console.log(`Vin de la ${methodFrom} ${urlFrom}`);
+  // console.log(`Redirectez la ${redirectedMethod} ${redirectedUrl}`);
   if (methodFrom === redirectedMethod && urlFrom === redirectedUrl) {
-    console.log("Redirecting to", targetUrl);
+    // console.log("Redirecting to", targetUrl);
     res.writeHead(302, {
       Location: targetUrl,
     });

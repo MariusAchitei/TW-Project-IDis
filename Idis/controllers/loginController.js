@@ -1,9 +1,11 @@
+const fs = require("fs");
 const qs = require("querystring");
 const pool = require("../dbConnection");
 
 let loginController = {};
 
 loginController.loginPost = (req, res) => {
+  console.log("FDSKBGUIKDSJBILN");
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -46,6 +48,7 @@ loginController.loginPost = (req, res) => {
                 );
                 res.writeHead(200, { "Content-Type": "text/html" });
                 res.end(profilePage);
+                // return;
               }
             });
           } else {
