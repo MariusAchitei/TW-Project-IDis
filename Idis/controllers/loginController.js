@@ -10,6 +10,9 @@ let loginController = {};
 loginController.loginGet = (req, res) => {
   Utils.sendResources(req, res, "/views/login.html");
 };
+loginController.registerGet = (req, res) => {
+  Utils.sendResources(req, res, "/views/register.html");
+};
 
 loginController.loginPost = (req, res) => {
   //   console.log("FDSKBGUIKDSJBILN");

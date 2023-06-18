@@ -31,11 +31,17 @@ const server = http.createServer((req, res) => {
       loginController.loginPost(req, res);
     else if (method === "POST" && url === "/register")
       loginController.registerPost(req, res);
+    else if (method === "GET" && url == "/register")
+      loginController.registerGet(req, res);
     else if (method === "GET" && url === "/") Utils.redirectTo("/login", res);
     else if (method === "GET" && url === "/home") {
       console.log("home");
       requireAuthentication(req, res, () => {
         homeController.homeGet(req, res);
+      });
+    } else if (method === "GET" && url === "/createReview") {
+      requireAuthentication(req, res, () => {
+        homeController.createReviewGet(req, res);
       });
     } else if (req.url.match(/\/products\/\w+/) && req.method === "GET") {
       productsController.productGet(req, res);

@@ -1,393 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDis</title>
+    <link rel="stylesheet" href="../shared/style.css" />
+    <link rel="stylesheet" href="../shared/profilePageStyles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IDis</title>
-  <link rel="stylesheet" href="../shared/style.css" />
-  <link rel="stylesheet" href="../shared/profilePageStyles.css" />
-</head>
-
-<body>
-  <nav>
-    <div class="container nav-container">
-      <a href="index.html">
-        <h2 class="logo">IDis</h2>
-      </a>
-      <div class="search-bar">
-        <img src="../shared/icon/search.svg" class="icon2" />
-        <input type="search" placeholder="search for review..." />
-      </div>
-      <div class="create">
-        <label for="creatPost">
-          <a class="btn btn-primary" href="/views/login.html">Logout</a></label>
-        <a href="profile.html">
-          <div class="profile-phots">
-            <img src="../shared/img/profile-1.jpg" alt="" />
-          </div>
+  <body>
+    <nav>
+      <div class="container nav-container">
+        <a href="/home">
+          <h2 class="logo">IDis</h2>
         </a>
+        <div class="search-bar">
+          <img src="../shared/icon/search.svg" class="icon2" />
+          <input type="search" placeholder="search for review..." />
+        </div>
+        <div class="create">
+          <label for="creatPost">
+            <a class="btn btn-primary" href="/login">Logout</a></label
+          >
+          <a href="/profile">
+            <div class="profile-phots">
+              <img src="../shared/img/profile-1.jpg" alt="" />
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <main>
-    <div class="container main-container">
-      <div class="main-left">
-        <div class="profile">
-          <div class="profile-phots">
-            <img src="../shared/img/profile-1.jpg" alt="" />
+    <main>
+      <div class="container main-container">
+        <div class="main-left">
+          <div class="profile">
+            <div class="profile-phots">
+              <img src="../shared/img/profile-1.jpg" alt="" />
+            </div>
+            <div class="hendel">
+              <h4>Sociu Lucian</h4>
+              <p class="text-gry">@sociufulesti</p>
+            </div>
           </div>
-          <div class="hendel">
-            <h4>Sociu Lucian</h4>
-            <p class="text-gry">@sociufulesti</p>
+
+          <div class="side-bar">
+            <a class="menu-item active">
+              <span
+                ><img src="../shared/icon/house-door.svg" class="icon1"
+              /></span>
+              <h3>home</h3>
+            </a>
+            <a class="menu-item" id="notifice">
+              <span> <img src="../shared/icon/bell.svg" class="icon1" /></span>
+              <h3>notifications</h3>
+              <div class="notification">
+                <div class="NP">
+                  <div class="profile-phots">
+                    <img src="../shared/img/p2.jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>maria</b> commented on your review
+                    <small class="text-gry"> 1 minute ago</small>
+                  </div>
+                </div>
+                <div class="NP">
+                  <div class="profile-phots">
+                    <img src="../shared/img/p3.png" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>alex cocostarc</b> commented on your review
+                    <small class="text-gry"> 4 minutes ago</small>
+                  </div>
+                </div>
+                <div class="NP">
+                  <div class="profile-phots">
+                    <img src="../shared/img/p4.png" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>cosmin costache</b> commented on your review
+                    <small class="text-gry"> 10 minutes ago</small>
+                  </div>
+                </div>
+                <div class="NP">
+                  <div class="profile-phots">
+                    <img src="../shared/img/p5.png" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>david</b> commented on your review
+                    <small class="text-gry"> 20 minutes ago</small>
+                  </div>
+                </div>
+                <div class="NP">
+                  <div class="profile-phots">
+                    <img src="../shared/img/profile-4.jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>angela paraschiv</b> commented on your review
+                    <small class="text-gry"> 1 hour ago</small>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a class="menu-item" id="view-categories">
+              <span
+                ><img src="../shared/icon/category-icon.svg" class="icon1"
+              /></span>
+              <h3>view categories</h3>
+            </a>
+            <a class="menu-item">
+              <span
+                ><img src="../shared/icon/graph-up-arrow.svg" class="icon1"
+              /></span>
+              <h3>analytics</h3>
+            </a>
+            <a class="menu-item" id="themeMenu">
+              <span
+                ><img src="../shared/icon/palette.svg" class="icon1"
+              /></span>
+              <h3>theme</h3>
+            </a>
+            <a class="menu-item g">
+              <span><img src="../shared/icon/gear.svg" class="icon1" /></span>
+              <h3>setings</h3>
+            </a>
+
+            <a href="/createReview"
+              ><label for="creatPost" class="btn btn-primary"
+                >create review</label
+              ></a
+            >
           </div>
         </div>
 
-        <div class="side-bar">
-          <a class="menu-item active">
-            <span><img src="../shared/icon/house-door.svg" class="icon1" /></span>
-            <h3>home</h3>
-          </a>
-          <a class="menu-item" id="notifice">
-            <span> <img src="../shared/icon/bell.svg" class="icon1" /></span>
-            <h3>notifications</h3>
-            <div class="notification">
-              <div class="NP">
+        <div class="main-mid">
+          <div class="creatPost">
+            <div class="profile-phots">
+              <img src="../shared/img/profile-1.jpg" alt="" />
+            </div>
+            <div class="text-post">
+              <input
+                type="text"
+                placeholder="write a review"
+                class="creatPost"
+              />
+            </div>
+
+            <div>
+              <a href="createReview.html"
+                ><button class="btn btn-primary">createReview</button></a
+              >
+            </div>
+          </div>
+
+          <div class="posts-container">
+            <div class="post-wrap">
+              <div class="head">
                 <div class="profile-phots">
-                  <img src="../shared/img/p2.jpg" alt="" />
+                  <img src="../shared/img/p7.png" alt="" />
                 </div>
-                <div class="notification-body">
-                  <b>maria</b> commented on your review
-                  <small class="text-gry"> 1 minute ago</small>
+                <div class="info">
+                  <h3>costel biju</h3>
                 </div>
+                <span class="edit">
+                  <img src="../shared/icon/three-dots.svg" class="icon1" />
+                </span>
               </div>
-              <div class="NP">
-                <div class="profile-phots">
-                  <img src="../shared/img/p3.png" alt="" />
+              <div class="post">
+                <div class="product-details">
+                  <div class="product-name">Masina de tocat Albatros</div>
+                  <div class="post-photo">
+                    <a href="product.html"
+                      ><img src="../shared/img/tocat.jpg" alt=""
+                    /></a>
+                  </div>
                 </div>
-                <div class="notification-body">
-                  <b>alex cocostarc</b> commented on your review
-                  <small class="text-gry"> 4 minutes ago</small>
-                </div>
-              </div>
-              <div class="NP">
-                <div class="profile-phots">
-                  <img src="../shared/img/p4.png" alt="" />
-                </div>
-                <div class="notification-body">
-                  <b>cosmin costache</b> commented on your review
-                  <small class="text-gry"> 10 minutes ago</small>
-                </div>
-              </div>
-              <div class="NP">
-                <div class="profile-phots">
-                  <img src="../shared/img/p5.png" alt="" />
-                </div>
-                <div class="notification-body">
-                  <b>david</b> commented on your review
-                  <small class="text-gry"> 20 minutes ago</small>
-                </div>
-              </div>
-              <div class="NP">
-                <div class="profile-phots">
-                  <img src="../shared/img/profile-4.jpg" alt="" />
-                </div>
-                <div class="notification-body">
-                  <b>angela paraschiv</b> commented on your review
-                  <small class="text-gry"> 1 hour ago</small>
+                <div class="review">
+                  <div class="category">/electrocasnice/bucatarie</div>
+                  <div class="rating">
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                  </div>
+                  <div class="review-title">
+                    <span>Titlu review</span>
+                  </div>
+                  <div class="review-text">
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
+                      fugiat commodi laborum odio illo, vel, velit quam iste
+                      expedita, ipsum nemo asperiores.
+                    </span>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="price review-detail">Price:<span>150</span></div>
+                  <div class="bought-from review-detail">
+                    Bought from:<span>Altex</span>
+                  </div>
+                  <div class="bought-on review-detail">
+                    Bought on:<span>11-1-2011</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </a>
-          <a class="menu-item" id="view-categories">
-            <span><img src="../shared/icon/category-icon.svg" class="icon1" /></span>
-            <h3>view categories</h3>
-          </a>
-          <a class="menu-item">
-            <span><img src="../shared/icon/graph-up-arrow.svg" class="icon1" /></span>
-            <h3>analytics</h3>
-          </a>
-          <a class="menu-item" id="themeMenu">
-            <span><img src="../shared/icon/palette.svg" class="icon1" /></span>
-            <h3>theme</h3>
-          </a>
-          <a class="menu-item g">
-            <span><img src="../shared/icon/gear.svg" class="icon1" /></span>
-            <h3>setings</h3>
-          </a>
-
-          <a href="createReview.html"><label for="creatPost" class="btn btn-primary">create review</label></a>
+            <div class="post-wrap">
+              <div class="head">
+                <div class="profile-phots">
+                  <img src="../shared/img/p7.png" alt="" />
+                </div>
+                <div class="info">
+                  <h3>costel biju</h3>
+                </div>
+                <span class="edit">
+                  <img src="../shared/icon/three-dots.svg" class="icon1" />
+                </span>
+              </div>
+              <div class="post">
+                <div class="product-details">
+                  <div class="product-name">Laptop HP</div>
+                  <div class="post-photo">
+                    <a href="product.html"
+                      ><img src="../shared/img/laptop.jpg" alt=""
+                    /></a>
+                  </div>
+                </div>
+                <div class="review">
+                  <div class="category">/Gadgets/Laptop</div>
+                  <div class="rating">
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                  </div>
+                  <div class="review-title">
+                    <span>Titlu review</span>
+                  </div>
+                  <div class="review-text">
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
+                      fugiat commodi laborum odio illo, vel, velit quam iste
+                      expedita, ipsum nemo asperiores.
+                    </span>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="price review-detail">Price:<span>150</span></div>
+                  <div class="bought-from review-detail">
+                    Bought from:<span>Altex</span>
+                  </div>
+                  <div class="bought-on review-detail">
+                    Bought on:<span>11-1-2011</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="post-wrap">
+              <div class="head">
+                <div class="profile-phots">
+                  <img src="../shared/img/p7.png" alt="" />
+                </div>
+                <div class="info">
+                  <h3>costel biju</h3>
+                </div>
+                <span class="edit">
+                  <img src="../shared/icon/three-dots.svg" class="icon1" />
+                </span>
+              </div>
+              <div class="post">
+                <div class="product-details">
+                  <div class="product-name">Masina de tocat Albatros</div>
+                  <div class="post-photo">
+                    <a href="product.html"
+                      ><img src="../shared/img/tocat.jpg" alt=""
+                    /></a>
+                  </div>
+                </div>
+                <div class="review">
+                  <div class="category">/electrocasnice/bucatarie</div>
+                  <div class="rating">
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                  </div>
+                  <div class="review-title">
+                    <span>Titlu review</span>
+                  </div>
+                  <div class="review-text">
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
+                      fugiat commodi laborum odio illo, vel, velit quam iste
+                      expedita, ipsum nemo asperiores.
+                    </span>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="price review-detail">Price:<span>150</span></div>
+                  <div class="bought-from review-detail">
+                    Bought from:<span>Altex</span>
+                  </div>
+                  <div class="bought-on review-detail">
+                    Bought on:<span>11-1-2011</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="post-wrap">
+              <div class="head">
+                <div class="profile-phots">
+                  <img src="../shared/img/p7.png" alt="" />
+                </div>
+                <div class="info">
+                  <h3>costel biju</h3>
+                </div>
+                <span class="edit">
+                  <img src="../shared/icon/three-dots.svg" class="icon1" />
+                </span>
+              </div>
+              <div class="post">
+                <div class="product-details">
+                  <div class="product-name">Laptop HP</div>
+                  <div class="post-photo">
+                    <a href="product.html"
+                      ><img src="../shared/img/laptop.jpg" alt=""
+                    /></a>
+                  </div>
+                </div>
+                <div class="review">
+                  <div class="category">/Gadgets/Laptop</div>
+                  <div class="rating">
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                    <img src="../shared/img/star.png" alt="" />
+                  </div>
+                  <div class="review-title">
+                    <span>Titlu review</span>
+                  </div>
+                  <div class="review-text">
+                    <span
+                      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
+                      fugiat commodi laborum odio illo, vel, velit quam iste
+                      expedita, ipsum nemo asperiores.
+                    </span>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="price review-detail">Price:<span>150</span></div>
+                  <div class="bought-from review-detail">
+                    Bought from:<span>Altex</span>
+                  </div>
+                  <div class="bought-on review-detail">
+                    Bought on:<span>11-1-2011</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </main>
 
-      <div class="main-mid">
-        <div class="creatPost">
-          <div class="profile-phots">
-            <img src="../shared/img/profile-1.jpg" alt="" />
-          </div>
-          <div class="text-post">
-            <input type="text" placeholder="write a review" class="creatPost" />
-          </div>
+    <div class="theme">
+      <div class="card">
+        <h2>CUSTOMIZE yuor site</h2>
+        <p class="text-gry">manage your font, color, and backgroud</p>
 
+        <div class="font-siz">
           <div>
-            <a href="createReview.html"><button class="btn btn-primary">createReview</button></a>
+            <h6>aa</h6>
+            <div class="choose-font-size">
+              <span class="font1"></span>
+              <span class="font2 active"></span>
+              <span class="font3"></span>
+              <span class="font4"></span>
+              <span class="font5"></span>
+            </div>
+            <h3>aa</h3>
           </div>
         </div>
 
-        <div class="posts-container">
-          <div class="post-wrap">
-            <div class="head">
-              <div class="profile-phots">
-                <img src="../shared/img/p7.png" alt="" />
-              </div>
-              <div class="info">
-                <h3>costel biju</h3>
-              </div>
-              <span class="edit">
-                <img src="../shared/icon/three-dots.svg" class="icon1" />
-              </span>
-            </div>
-            <div class="post">
-              <div class="product-details">
-                <div class="product-name">Masina de tocat Albatros</div>
-                <div class="post-photo">
-                  <a href="product.html"><img src="../shared/img/tocat.jpg" alt="" /></a>
-                </div>
-              </div>
-              <div class="review">
-                <div class="category">/electrocasnice/bucatarie</div>
-                <div class="rating">
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                </div>
-                <div class="review-title">
-                  <span>Titlu review</span>
-                </div>
-                <div class="review-text">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
-                    fugiat commodi laborum odio illo, vel, velit quam iste
-                    expedita, ipsum nemo asperiores.
-                  </span>
-                </div>
-                <div class="separator"></div>
-                <div class="price review-detail">Price:<span>150</span></div>
-                <div class="bought-from review-detail">
-                  Bought from:<span>Altex</span>
-                </div>
-                <div class="bought-on review-detail">
-                  Bought on:<span>11-1-2011</span>
-                </div>
-              </div>
-            </div>
+        <div class="color">
+          <h3>color</h3>
+          <div class="choose-color">
+            <span class="color1"></span>
+            <span class="color2"></span>
+            <span class="color3 active"></span>
+            <span class="color4"></span>
+            <span class="color5"></span>
           </div>
-          <div class="post-wrap">
-            <div class="head">
-              <div class="profile-phots">
-                <img src="../shared/img/p7.png" alt="" />
-              </div>
-              <div class="info">
-                <h3>costel biju</h3>
-              </div>
-              <span class="edit">
-                <img src="../shared/icon/three-dots.svg" class="icon1" />
-              </span>
+        </div>
+
+        <div class="background">
+          <h3>backgorund</h3>
+          <div class="chosse-backgorund">
+            <div class="bg1 active">
+              <span></span>
+              <h5 class="bg1">light</h5>
             </div>
-            <div class="post">
-              <div class="product-details">
-                <div class="product-name">Laptop HP</div>
-                <div class="post-photo">
-                  <a href="product.html"><img src="../shared/img/laptop.jpg" alt="" /></a>
-                </div>
-              </div>
-              <div class="review">
-                <div class="category">/Gadgets/Laptop</div>
-                <div class="rating">
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                </div>
-                <div class="review-title">
-                  <span>Titlu review</span>
-                </div>
-                <div class="review-text">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
-                    fugiat commodi laborum odio illo, vel, velit quam iste
-                    expedita, ipsum nemo asperiores.
-                  </span>
-                </div>
-                <div class="separator"></div>
-                <div class="price review-detail">Price:<span>150</span></div>
-                <div class="bought-from review-detail">
-                  Bought from:<span>Altex</span>
-                </div>
-                <div class="bought-on review-detail">
-                  Bought on:<span>11-1-2011</span>
-                </div>
-              </div>
+            <div class="bg2">
+              <span></span>
+              <h5 class="bg2">dark</h5>
             </div>
-          </div>
-          <div class="post-wrap">
-            <div class="head">
-              <div class="profile-phots">
-                <img src="../shared/img/p7.png" alt="" />
-              </div>
-              <div class="info">
-                <h3>costel biju</h3>
-              </div>
-              <span class="edit">
-                <img src="../shared/icon/three-dots.svg" class="icon1" />
-              </span>
-            </div>
-            <div class="post">
-              <div class="product-details">
-                <div class="product-name">Masina de tocat Albatros</div>
-                <div class="post-photo">
-                  <a href="product.html"><img src="../shared/img/tocat.jpg" alt="" /></a>
-                </div>
-              </div>
-              <div class="review">
-                <div class="category">/electrocasnice/bucatarie</div>
-                <div class="rating">
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                </div>
-                <div class="review-title">
-                  <span>Titlu review</span>
-                </div>
-                <div class="review-text">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
-                    fugiat commodi laborum odio illo, vel, velit quam iste
-                    expedita, ipsum nemo asperiores.
-                  </span>
-                </div>
-                <div class="separator"></div>
-                <div class="price review-detail">Price:<span>150</span></div>
-                <div class="bought-from review-detail">
-                  Bought from:<span>Altex</span>
-                </div>
-                <div class="bought-on review-detail">
-                  Bought on:<span>11-1-2011</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="post-wrap">
-            <div class="head">
-              <div class="profile-phots">
-                <img src="../shared/img/p7.png" alt="" />
-              </div>
-              <div class="info">
-                <h3>costel biju</h3>
-              </div>
-              <span class="edit">
-                <img src="../shared/icon/three-dots.svg" class="icon1" />
-              </span>
-            </div>
-            <div class="post">
-              <div class="product-details">
-                <div class="product-name">Laptop HP</div>
-                <div class="post-photo">
-                  <a href="product.html"><img src="../shared/img/laptop.jpg" alt="" /></a>
-                </div>
-              </div>
-              <div class="review">
-                <div class="category">/Gadgets/Laptop</div>
-                <div class="rating">
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                  <img src="../shared/img/star.png" alt="" />
-                </div>
-                <div class="review-title">
-                  <span>Titlu review</span>
-                </div>
-                <div class="review-text">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolorum inventore ipsa enim sunt, nam quae. Hic quasi
-                    fugiat commodi laborum odio illo, vel, velit quam iste
-                    expedita, ipsum nemo asperiores.
-                  </span>
-                </div>
-                <div class="separator"></div>
-                <div class="price review-detail">Price:<span>150</span></div>
-                <div class="bought-from review-detail">
-                  Bought from:<span>Altex</span>
-                </div>
-                <div class="bought-on review-detail">
-                  Bought on:<span>11-1-2011</span>
-                </div>
-              </div>
+            <div class="bg3">
+              <span></span>
+              <h5 class="bg3">black</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </main>
-
-  <div class="theme">
-    <div class="card">
-      <h2>CUSTOMIZE yuor site</h2>
-      <p class="text-gry">manage your font, color, and backgroud</p>
-
-      <div class="font-siz">
-        <div>
-          <h6>aa</h6>
-          <div class="choose-font-size">
-            <span class="font1"></span>
-            <span class="font2 active"></span>
-            <span class="font3"></span>
-            <span class="font4"></span>
-            <span class="font5"></span>
-          </div>
-          <h3>aa</h3>
-        </div>
-      </div>
-
-      <div class="color">
-        <h3>color</h3>
-        <div class="choose-color">
-          <span class="color1"></span>
-          <span class="color2"></span>
-          <span class="color3 active"></span>
-          <span class="color4"></span>
-          <span class="color5"></span>
-        </div>
-      </div>
-
-      <div class="background">
-        <h3>backgorund</h3>
-        <div class="chosse-backgorund">
-          <div class="bg1 active">
-            <span></span>
-            <h5 class="bg1">light</h5>
-          </div>
-          <div class="bg2">
-            <span></span>
-            <h5 class="bg2">dark</h5>
-          </div>
-          <div class="bg3">
-            <span></span>
-            <h5 class="bg3">black</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
