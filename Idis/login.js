@@ -17,18 +17,7 @@ const pool = new Pool({
 const server = http.createServer((req, res) => {
   const { method, url } = req;
 
-  if (method === "GET" && url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    fs.readFile(path.join(__dirname, "login.html"), (err, data) => {
-      if (err) {
-        console.error("Error reading file", err);
-        res.statusCode = 500;
-        res.end("Internal Server Error");
-      } else {
-        res.end(data);
-      }
-    });
-  } else if (method === "POST" && url === "/login") {
+  if (method === "POST" && url === "/login") {
     let body = "";
     req.on("data", (chunk) => {
       body += chunk;
@@ -46,10 +35,26 @@ const server = http.createServer((req, res) => {
             res.end("Internal Server Error");
           } else {
             if (result.rows.length > 0) {
-              // Set session
-              req.session = { user: result.rows[0] };
-              res.statusCode = 200;
-              res.end("Login successful");
+              const user = result.rows[0];
+
+              fs.readFile("profile.html", "utf8", (err, data) => {
+                if (err) {
+                  console.error("Error reading profile.html", err);
+                  res.writeHead(500, { "Content-Type": "text/plain" });
+                  res.end("Internal Server Error");
+                } else {
+                  res.writeHead(200, { "Content-Type": "text/html" });
+                  let profilePage = data.replace("{{username}}", user.username);
+                  profilePage = data.replace("{{borndate}}", user.borndate);
+                  profilePage = data.replace("{{city}}", user.city);
+                  profilePage = data.replace("{{country}}", user.country);
+                  // res.writeHead(200, { "Content-Type": "text/html" });
+                  res.end(profilePage);
+                }
+              });
+              res.statusCode = 302;
+              res.setHeader("Location", "/index.html");
+              res.end();
             } else {
               res.statusCode = 401;
               res.end("Invalid credentials");
@@ -64,17 +69,17 @@ const server = http.createServer((req, res) => {
       body += chunk;
     });
     req.on("end", () => {
-      const { firstname, lastname, country, city, borndate, email, password } =
+      const { firstname, lastname, email, country, city, borndate, password } =
         qs.parse(body);
 
       const query = `
-        INSERT INTO users (username,country,city,born_date, email, password_hash)
+        INSERT INTO users (username, email,country,city,born_date, password_hash)
         VALUES ($1, $2, $3,$4,$5,$6)
       `;
       let username = firstname + " " + lastname;
       pool.query(
         query,
-        [username, country, city, borndate, email, password],
+        [username, email, country, city, borndate, password],
         (err, result) => {
           if (err) {
             console.error("Error executing query: " + err.stack);
@@ -105,6 +110,19 @@ const server = http.createServer((req, res) => {
     res.statusCode = 404;
     res.end("Not Found");
   }
+});
+
+const sessionMiddleware = clientSessions({
+  cookieName: "session",
+  secret: "ceva pt securitate",
+  duration: 24 * 60 * 60 * 1000, // 1 day
+  activeDuration: 30 * 60 * 1000, // 30 minutes
+});
+
+server.on("request", (req, res) => {
+  sessionMiddleware(req, res, () => {
+    server.emit("sessionParsed", req, res);
+  });
 });
 
 const port = 3000;
