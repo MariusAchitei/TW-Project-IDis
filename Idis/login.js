@@ -1,13 +1,10 @@
-const express = require("express");
-const session = require("express-session");
+const http = require("http");
 const { Pool } = require("pg");
 const path = require("path");
 const mime = require("mime");
-
-const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const qs = require("querystring");
+const clientSessions = require("client-sessions");
+const fs = require("fs");
 
 const pool = new Pool({
   user: "postgres",
@@ -17,68 +14,100 @@ const pool = new Pool({
   port: "5432",
 });
 
-app.use(
-  session({
-    secret: "ceva pt securitate",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+const server = http.createServer((req, res) => {
+  const { method, url } = req;
 
-//app.use(express.static(path.join(__dirname, "IDIs")));
-app.use(
-  express.static(__dirname, {
-    setHeaders: (res, filePath) => {
-      res.setHeader("Content-Type", mime.getType(filePath));
-    },
-  })
-);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "login.html"));
-});
-
-app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-
-  pool.query(
-    "SELECT * FROM users WHERE email = $1 AND password_hash = $2",
-    [email, password],
-    (err, result) => {
+  if (method === "GET" && url === "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.readFile(path.join(__dirname, "login.html"), (err, data) => {
       if (err) {
-        console.error("Error executing query", err);
-        res.status(500).send("Internal server error");
+        console.error("Error reading file", err);
+        res.statusCode = 500;
+        res.end("Internal Server Error");
       } else {
-        if (result.rows.length > 0) {
-          req.session.user = result.rows[0];
-          res.status(200).send("Login successful");
-        } else {
-          res.status(401).send("Invalid credentials");
-        }
+        res.end(data);
       }
-    }
-  );
-});
-app.post("/register", (req_new, res_new) => {
-  const { firstname, lastname, email, password } = req_new.body;
+    });
+  } else if (method === "POST" && url === "/login") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+    });
+    req.on("end", () => {
+      const { email, password } = qs.parse(body);
 
-  const query = `
-    INSERT INTO users (username, email, password_hash)
-    VALUES ($1, $2, $3)
-  `;
-  let username = firstname + lastname;
-  pool.query(query, [username, email, password], (err, result) => {
-    if (err) {
-      console.error("Error executing query: " + err.stack);
-      res_new.status(500).send("Internal Server Error");
-    } else {
-      console.log(req_new.body);
-      res_new.redirect("/login.html"); // Redirect to the login page
-    }
-  });
+      pool.query(
+        "SELECT * FROM users WHERE email = $1 AND password_hash = $2",
+        [email, password],
+        (err, result) => {
+          if (err) {
+            console.error("Error executing query", err);
+            res.statusCode = 500;
+            res.end("Internal Server Error");
+          } else {
+            if (result.rows.length > 0) {
+              // Set session
+              req.session = { user: result.rows[0] };
+              res.statusCode = 200;
+              res.end("Login successful");
+            } else {
+              res.statusCode = 401;
+              res.end("Invalid credentials");
+            }
+          }
+        }
+      );
+    });
+  } else if (method === "POST" && url === "/register") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+    });
+    req.on("end", () => {
+      const { firstname, lastname, country, city, borndate, email, password } =
+        qs.parse(body);
+
+      const query = `
+        INSERT INTO users (username,country,city,born_date, email, password_hash)
+        VALUES ($1, $2, $3,$4,$5,$6)
+      `;
+      let username = firstname + " " + lastname;
+      pool.query(
+        query,
+        [username, country, city, borndate, email, password],
+        (err, result) => {
+          if (err) {
+            console.error("Error executing query: " + err.stack);
+            res.statusCode = 500;
+            res.end("Internal Server Error");
+          } else {
+            console.log(req.body);
+            res.statusCode = 302;
+            res.setHeader("Location", "/login.html");
+            res.end();
+          }
+        }
+      );
+    });
+  } else if (method === "GET" || method === "HEAD") {
+    const filePath = path.join(__dirname, url === "/" ? "login.html" : url);
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        console.error("Error reading file", err);
+        res.statusCode = 500;
+        res.end("Internal Server Error");
+      } else {
+        res.setHeader("Content-Type", mime.getType(filePath));
+        res.end(data);
+      }
+    });
+  } else {
+    res.statusCode = 404;
+    res.end("Not Found");
+  }
 });
+
 const port = 3000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
