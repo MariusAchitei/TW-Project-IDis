@@ -14,6 +14,20 @@ const pool = new Pool({
   port: "5432",
 });
 
+function requireAuthentication(req, res, next) {
+  if (
+    (req.url === "/index.html" ||
+      req.url === "/profile.html" ||
+      req.url === "/createReview.html" ||
+      req.url === "/product.html") &&
+    !req.session.user
+  ) {
+    res.statusCode = 401;
+    res.end("Unauthorized");
+  } else {
+    next();
+  }
+}
 const sessionMiddleware = clientSessions({
   cookieName: "session",
   secret: "ceva pt securitate",
@@ -23,6 +37,7 @@ const sessionMiddleware = clientSessions({
 
 const server = http.createServer((req, res) => {
   const { method, url } = req;
+
   sessionMiddleware(req, res, () => {
     if (method === "POST" && url === "/login") {
       let body = "";
@@ -62,6 +77,14 @@ const server = http.createServer((req, res) => {
                     profilePage = profilePage.replace(
                       "{{country}}",
                       user.country
+                    );
+                    profilePage = profilePage.replace(
+                      "{{username}}",
+                      user.username
+                    );
+                    profilePage = profilePage.replace(
+                      "{{username}}",
+                      user.username
                     );
                     res.writeHead(200, { "Content-Type": "text/html" });
                     res.end(profilePage);
@@ -115,15 +138,17 @@ const server = http.createServer((req, res) => {
       });
     } else if (method === "GET" || method === "HEAD") {
       const filePath = path.join(__dirname, url === "/" ? "login.html" : url);
-      fs.readFile(filePath, (err, data) => {
-        if (err) {
-          console.error("Error reading file", err);
-          res.statusCode = 500;
-          res.end("Internal Server Error");
-        } else {
-          res.setHeader("Content-Type", mime.getType(filePath));
-          res.end(data);
-        }
+      requireAuthentication(req, res, () => {
+        fs.readFile(filePath, (err, data) => {
+          if (err) {
+            console.error("Error reading file", err);
+            res.statusCode = 500;
+            res.end("Internal Server Error");
+          } else {
+            res.setHeader("Content-Type", mime.getType(filePath));
+            res.end(data);
+          }
+        });
       });
     } else {
       res.statusCode = 404;
