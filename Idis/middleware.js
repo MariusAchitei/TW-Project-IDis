@@ -70,8 +70,8 @@ function requireAuthentication(req, res, next) {
     }
 
     // Set the userId in locals for further processing
-    console.log("DECODED TOKEN");
-    console.log(decodedToken.id);
+    // console.log("DECODED TOKEN");
+    // console.log(decodedToken.id);
     req.locals = { userId: decodedToken.id };
     // Continue to the next middleware or route handler
     // Call the appropriate handler or return a response here

@@ -38,8 +38,9 @@ const server = http.createServer((req, res) => {
       });
     } else if (method === "GET" && url === "/profile") {
       console.log("profile");
-      requireAuthentication(req, res, () => {
-        profileController.profileGet(req, res);
+      requireAuthentication(req, res, async () => {
+        console.log("profile");
+        await profileController.profileGet(req, res);
       });
     } else if (method === "GET" || method === "HEAD")
       Utils.sendResources(req, res, url);

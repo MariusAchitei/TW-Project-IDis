@@ -46,11 +46,13 @@ loginController.loginPost = (req, res) => {
               "Set-Cookie",
               `token=${token}; HttpOnly; Max-Age=${1 * 60 * 60 * 1000}`
             );
-            res.writeHead(200, { "Content-Type": "application/json" });
 
-            res.end(
-              JSON.stringify({ success: true, message: "User logged in" })
-            );
+            Utils.redirectTo("/profile", res);
+            // res.writeHead(200, { "Content-Type": "application/json" });
+
+            // res.end(
+            //   JSON.stringify({ success: true, message: "User logged in" })
+            // );
           } else {
             res.statusCode = 401;
             res.end("Invalid credentials");
