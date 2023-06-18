@@ -5,21 +5,23 @@ const mime = require("mime");
 const qs = require("querystring");
 const clientSessions = require("client-sessions");
 const fs = require("fs");
+require("dotenv").config();
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "Tw-Project",
-  password: "lucians2",
-  port: "5432",
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: process.env.DB_PORT,
 });
+
 
 function requireAuthentication(req, res, next) {
   if (
-    (req.url === "/index.html" ||
-      req.url === "/profile.html" ||
-      req.url === "/createReview.html" ||
-      req.url === "/product.html") &&
+    (req.url === "views/index.html" ||
+      req.url === "/views/profile.html" ||
+      req.url === "/views/createReview.html" ||
+      req.url === "/views/product.html") &&
     !req.session.user
   ) {
     res.statusCode = 401;
@@ -59,7 +61,7 @@ const server = http.createServer((req, res) => {
               if (result.rows.length > 0) {
                 const user = result.rows[0];
 
-                fs.readFile("profile.html", "utf8", (err, data) => {
+                fs.readFile("views/profile.html", "utf8", (err, data) => {
                   if (err) {
                     console.error("Error reading profile.html", err);
                     res.writeHead(500, { "Content-Type": "text/plain" });
@@ -130,14 +132,14 @@ const server = http.createServer((req, res) => {
             } else {
               console.log(req.body);
               res.statusCode = 302;
-              res.setHeader("Location", "/login.html");
+              res.setHeader("Location", "views/login.html");
               res.end();
             }
           }
         );
       });
     } else if (method === "GET" || method === "HEAD") {
-      const filePath = path.join(__dirname, url === "/" ? "login.html" : url);
+      const filePath = path.join(__dirname, url === "/" ? "views/login.html" : url);
       requireAuthentication(req, res, () => {
         fs.readFile(filePath, (err, data) => {
           if (err) {
