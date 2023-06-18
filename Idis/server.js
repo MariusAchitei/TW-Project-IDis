@@ -11,6 +11,7 @@ const { requireAuthentication } = require("./middleware");
 const loginController = require("./controllers/loginController");
 const homeController = require("./controllers/homeController");
 const profileController = require("./controllers/profileController");
+const productsController = require("./controllers/productsController");
 const Utils = require("./utils");
 
 const sessionMiddleware = clientSessions({
@@ -36,6 +37,8 @@ const server = http.createServer((req, res) => {
       requireAuthentication(req, res, () => {
         homeController.homeGet(req, res);
       });
+    } else if (req.url.match(/\/products\/\w+/) && req.method === "GET") {
+      productsController.productGet(req, res);
     } else if (method === "GET" && url === "/profile") {
       console.log("profile");
       requireAuthentication(req, res, async () => {
