@@ -8,7 +8,9 @@ require("dotenv").config();
 
 const pool = require("./dbConnection");
 const { requireAuthentication } = require("./middleware");
-const { loginController } = require("./controllers/loginController");
+const loginController = require("./controllers/loginController");
+const homeController = require("./controllers/homeController");
+const profileController = require("./controllers/profileController");
 const Utils = require("./utils");
 
 const sessionMiddleware = clientSessions({
@@ -21,21 +23,30 @@ const sessionMiddleware = clientSessions({
 const server = http.createServer((req, res) => {
   let { method, url } = req;
   sessionMiddleware(req, res, () => {
-    Utils.post("/login", req, res, loginController.loginPost);
-
-    Utils.post("/register", req, res, loginController.registerPost);
-
-    Utils.redirect(method, url, "GET", "/", "/views/login.html", res);
-
-    if (method === "GET" || method === "HEAD") {
+    if (method === "GET" && url === "/login") {
+      console.log("login");
+      loginController.loginGet(req, res);
+    } else if (method === "POST" && url === "/login")
+      loginController.loginPost(req, res);
+    else if (method === "POST" && url === "/register")
+      loginController.registerPost(req, res);
+    else if (method === "GET" && url === "/") Utils.redirect("/login", res);
+    else if (method === "GET" && url === "/home") {
+      console.log("home");
       requireAuthentication(req, res, () => {
-        Utils.sendResources(req, res, url);
+        homeController.homeGet(req, res);
       });
+    } else if (method === "GET" && url === "/profile") {
+      console.log("profile");
+      requireAuthentication(req, res, () => {
+        profileController.profileGet(req, res);
+      });
+    } else if (method === "GET" || method === "HEAD")
+      Utils.sendResources(req, res, url);
+    else {
+      res.statusCode = 404;
+      res.end("Not Found");
     }
-    //  else {
-    //   res.statusCode = 404;
-    //   res.end("Not Found");
-    // }
   });
 });
 

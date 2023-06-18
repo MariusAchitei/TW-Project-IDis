@@ -8,14 +8,22 @@ let Utils = {};
 //     next(req, res);
 // }
 
-Utils.get = (targetUrl, req, res, next) => {
+Utils.get = (targetUrl, req, res, next, second) => {
   let { method, url } = req;
-  if (method === "GET" && url === targetUrl) next(req, res);
+  if (method === "GET" && url === targetUrl) {
+    next(req, res);
+    return true;
+  }
+  return false;
 };
 
-Utils.post = (targetUrl, req, res, next) => {
+Utils.post = (targetUrl, req, res, next, second) => {
   let { method, url } = req;
-  if (method === "POST" && url === targetUrl) next(req, res);
+  if (method === "POST" && url === targetUrl) {
+    next(req, res);
+    return true;
+  }
+  return false;
 };
 
 Utils.sendResources = (req, res, url) => {
@@ -40,15 +48,22 @@ Utils.redirect = (
   targetUrl,
   res
 ) => {
-  // console.log(`Vin de la ${methodFrom} ${urlFrom}`);
-  // console.log(`Redirectez la ${redirectedMethod} ${redirectedUrl}`);
   if (methodFrom === redirectedMethod && urlFrom === redirectedUrl) {
-    // console.log("Redirecting to", targetUrl);
     res.writeHead(302, {
       Location: targetUrl,
     });
     res.end();
+    return true;
   }
+  return false;
+};
+
+Utils.redirectTo = (targetUrl, res) => {
+  res.writeHead(302, {
+    Location: targetUrl,
+  });
+  res.end();
+  return true;
 };
 
 module.exports = Utils;

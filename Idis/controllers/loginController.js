@@ -1,11 +1,18 @@
 const fs = require("fs");
 const qs = require("querystring");
 const pool = require("../dbConnection");
+const jwt = require("jsonwebtoken");
+const Utils = require("../utils");
+require("dotenv").config();
 
 let loginController = {};
 
+loginController.loginGet = (req, res) => {
+  Utils.sendResources(req, res, "/views/login.html");
+};
+
 loginController.loginPost = (req, res) => {
-  console.log("FDSKBGUIKDSJBILN");
+  //   console.log("FDSKBGUIKDSJBILN");
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -25,32 +32,25 @@ loginController.loginPost = (req, res) => {
           if (result.rows.length > 0) {
             const user = result.rows[0];
 
-            fs.readFile("views/profile.html", "utf8", (err, data) => {
-              if (err) {
-                console.error("Error reading profile.html", err);
-                res.writeHead(500, { "Content-Type": "text/plain" });
-                res.end("Internal Server Error");
-              } else {
-                let profilePage = data.replace("{{username}}", user.username);
-                profilePage = profilePage.replace(
-                  "{{borndate}}",
-                  user.born_date
-                );
-                profilePage = profilePage.replace("{{city}}", user.city);
-                profilePage = profilePage.replace("{{country}}", user.country);
-                profilePage = profilePage.replace(
-                  "{{username}}",
-                  user.username
-                );
-                profilePage = profilePage.replace(
-                  "{{username}}",
-                  user.username
-                );
-                res.writeHead(200, { "Content-Type": "text/html" });
-                res.end(profilePage);
-                // return;
-              }
-            });
+            let { token } = req.headers.cookie || "";
+
+            if (token) {
+              // Clear the token
+              //   console
+              res.setHeader("Set-Cookie", "token=; Max-Age=0");
+            }
+
+            token = jwt.sign({ id: user.id }, process.env.JWT_KEY);
+
+            res.setHeader(
+              "Set-Cookie",
+              `token=${token}; HttpOnly; Max-Age=${1 * 60 * 60 * 1000}`
+            );
+            res.writeHead(200, { "Content-Type": "application/json" });
+
+            res.end(
+              JSON.stringify({ success: true, message: "User logged in" })
+            );
           } else {
             res.statusCode = 401;
             res.end("Invalid credentials");
@@ -93,4 +93,4 @@ loginController.registerPost = (req, res) => {
     );
   });
 };
-module.exports = { loginController };
+module.exports = loginController;
