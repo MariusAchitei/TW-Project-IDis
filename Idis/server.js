@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
       loginController.loginPost(req, res);
     else if (method === "POST" && url === "/register")
       loginController.registerPost(req, res);
-    else if (method === "GET" && url === "/") Utils.redirect("/login", res);
+    else if (method === "GET" && url === "/") Utils.redirectTo("/login", res);
     else if (method === "GET" && url === "/home") {
       console.log("home");
       requireAuthentication(req, res, () => {

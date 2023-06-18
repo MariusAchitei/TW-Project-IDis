@@ -26,13 +26,14 @@ function requireAuthentication(req, res, next) {
 
   if (!token) {
     console.log("NO TOKEN");
-    res.writeHead(401, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({
-        success: false,
-        message: "Unauthorized: Token not found",
-      })
-    );
+    Utils.redirectTo("/login", res);
+    // res.writeHead(401, { "Content-Type": "application/json" });
+    // res.end(
+    //   JSON.stringify({
+    //     success: false,
+    //     message: "Unauthorized: Token not found",
+    //   })
+    // );
     return;
   }
 
@@ -42,13 +43,14 @@ function requireAuthentication(req, res, next) {
     jwt.verify(token, process.env.JWT_KEY, (err, tokenUser) => {
       if (err) {
         res.setHeader("Set-Cookie", "token=; Max-Age=0");
-        res.writeHead(401, { "Content-Type": "application/json" });
-        res.end(
-          JSON.stringify({
-            success: false,
-            message: "Unauthorized: Bad token",
-          })
-        );
+        Utils.redirectTo("/login", res);
+        // res.writeHead(401, { "Content-Type": "application/json" });
+        // res.end(
+        //   JSON.stringify({
+        //     success: false,
+        //     message: "Unauthorized: Bad token",
+        //   })
+        // );
         return;
       }
       decodedToken = { id: tokenUser.id };
@@ -56,32 +58,35 @@ function requireAuthentication(req, res, next) {
 
     if (!decodedToken.id) {
       res.setHeader("Set-Cookie", "token=; Max-Age=0");
-      res.writeHead(401, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          success: false,
-          message: "Unauthorized: User not found",
-        })
-      );
+      Utils.redirectTo("/login", res);
+      // res.writeHead(401, { "Content-Type": "application/json" });
+      // res.end(
+      //   JSON.stringify({
+      //     success: false,
+      //     message: "Unauthorized: User not found",
+      //   })
+      // );
       return;
     }
 
     // Set the userId in locals for further processing
     console.log("DECODED TOKEN");
     console.log(decodedToken.id);
+    req.locals = { userId: decodedToken.id };
     // Continue to the next middleware or route handler
     // Call the appropriate handler or return a response here
   } catch (err) {
     console.log("CATCH");
     console.log(err);
     res.setHeader("Set-Cookie", "token=; Max-Age=0");
-    res.writeHead(401, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({
-        success: false,
-        message: "Unauthorized: Token not found",
-      })
-    );
+    Utils.redirectTo("/login", res);
+    // res.writeHead(401, { "Content-Type": "application/json" });
+    // return res.end(
+    //   JSON.stringify({
+    //     success: false,
+    //     message: "Unauthorized: Token not found",
+    //   })
+    // );
   }
   //   }
   next(req, res);
