@@ -13,5 +13,5 @@
     "start": "node Idis/server.js",
     "test": "mocha --timeout 10000",
     "dev": "nodemon ./Idis/server.js"
-  },
+  }
 }

@@ -15,10 +15,9 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-
 function requireAuthentication(req, res, next) {
   if (
-    (req.url === "views/index.html" ||
+    (req.url === "/views/index.html" ||
       req.url === "/views/profile.html" ||
       req.url === "/views/createReview.html" ||
       req.url === "/views/product.html") &&
@@ -139,13 +138,19 @@ const server = http.createServer((req, res) => {
         );
       });
     } else if (method === "GET" || method === "HEAD") {
-      const filePath = path.join(__dirname, url === "/" ? "views/login.html" : url);
+      const filePath = path.join(
+        __dirname,
+        url === "/" ? "views/login.html" : url
+      );
       requireAuthentication(req, res, () => {
         fs.readFile(filePath, (err, data) => {
           if (err) {
-            console.error("Error reading file", err);
+            // console.error("Error reading file", err);
+            console.log("BELITA PLANETARA");
+            console.error("Error reading file:", filePath);
+            console.log("[BELITA PLANETARA]");
             res.statusCode = 500;
-            res.end("Internal Server Error");
+            res.end("Internal Server Error puldsasdsadfhbhsd");
           } else {
             res.setHeader("Content-Type", mime.getType(filePath));
             res.end(data);
