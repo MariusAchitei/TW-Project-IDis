@@ -20,18 +20,6 @@ menuItem.forEach((item) => {
   });
 });
 
-const message = document.querySelector("#message");
-const messageBox = document.querySelector("#message-box");
-
-message.addEventListener("click", () => {
-  messageBox.classList.add("box-sh");
-  message.querySelector(".count").style.display = "none";
-
-  setTimeout(() => {
-    messageBox.classList.remove("box-sh");
-  }, 2000);
-});
-
 const themeMenu = document.querySelector("#themeMenu");
 const themBOx = document.querySelector(".theme");
 
