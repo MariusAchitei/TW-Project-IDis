@@ -1,7 +1,10 @@
 const Products = require("../models/Products");
 const Reviews = require("../models/Review");
 const fs = require("fs");
-const reviewComponent = require("../views/components/review");
+const {
+  reviewComponent,
+  starComponent,
+} = require("../views/components/review");
 
 let productsController = {};
 
@@ -21,6 +24,7 @@ productsController.productGet = async (req, res) => {
       .replace("{{profile}}", review.profile)
       .replace("{{name}}", review.name)
       .replace("{{photo}}", review.photo)
+      .replace("{{star}}", starComponent.repeat(review.rating))
   );
 
   fs.readFile("views/product.html", "utf8", (err, data) => {
