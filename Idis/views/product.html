@@ -24,7 +24,7 @@
             <input type="search" placeholder="search for review...">
         </div>
         <div class="create">
-            <label for="creatPost"> <a class="btn btn-primary" href="/login">Logout</a></label>
+            <label for="creatPost"> <a class="btn btn-primary" href="/logout">Logout</a></label>
             <a href="/profile">
                 <div class="profile-phots">
                     <img src="../shared/img/profile-1.jpg" alt="">
@@ -139,100 +139,7 @@
                         <span class="total-reviews">0</span>
                     </div>
                 </div>
-                <div class="post-wrap">
-                    <div class="head">
-                        <div class="profile-phots">
-                            <img src="../shared/img/p7.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>costel biju</h3>
-                        </div>
-                        <span class="edit">
-                            <img src="../shared/icon/three-dots.svg" class="icon1">
-                        </span>
-                    </div>
-                    <div class="post">
-                        <div class="product-details">
-                            <div class="product-name">Masina de tocat Albatros</div>
-                            <div class="post-photo">
-                                <img src="../shared/img/tocat.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="review">
-                            <div class="rating">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                            </div>
-                            <div class="review-title">
-                                <span>Titlu review</span>
-                            </div>
-                            <div class="review-text">
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum inventore
-                                    ipsa enim
-                                    sunt,
-                                    nam quae. Hic quasi fugiat commodi laborum odio illo, vel, velit quam iste
-                                    expedita, ipsum
-                                    nemo
-                                    asperiores.
-                                </span>
-                            </div>
-                            <div class="separator"></div>
-                            <div class="price review-detail">Price:<span>150</span></div>
-                            <div class="bought-from review-detail">Bought from:<span>Altex</span></div>
-                            <div class="bought-on review-detail">Bought on:<span>11-1-2011</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-wrap">
-                    <div class="head">
-                        <div class="profile-phots">
-                            <img src="../shared/img/p7.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>costel biju</h3>
-                        </div>
-                        <span class="edit">
-                            <img src="../shared/icon/three-dots.svg" class="icon1">
-                        </span>
-                    </div>
-                    <div class="post">
-                        <div class="product-details">
-                            <div class="product-name">Masina de tocat Albatros</div>
-                            <div class="post-photo">
-                                <img src="../shared/img/tocat.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="review">
-                            <div class="rating">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                                <img src="../shared/img/star.png" alt="">
-                            </div>
-                            <div class="review-title">
-                                <span>Titlu review</span>
-                            </div>
-                            <div class="review-text">
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum inventore
-                                    ipsa enim
-                                    sunt,
-                                    nam quae. Hic quasi fugiat commodi laborum odio illo, vel, velit quam iste
-                                    expedita, ipsum
-                                    nemo
-                                    asperiores.
-                                </span>
-                            </div>
-                            <div class="separator"></div>
-                            <div class="price review-detail">Price:<span>150</span></div>
-                            <div class="bought-from review-detail">Bought from:<span>Altex</span></div>
-                            <div class="bought-on review-detail">Bought on:<span>11-1-2011</span></div>
-                        </div>
-                    </div>
-                </div>
+                {{#each_review}}
             </div>
         </div>
     </div>
