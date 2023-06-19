@@ -24,5 +24,21 @@ Products.getById = async (id) => {
     return null;
   }
 };
+Products.getAll = async () => {
+  try {
+    const result = await pool.query(`SELECT * FROM Products`);
+
+    if (result.rows.length > 0) {
+      return result.rows;
+    } else {
+      console.log("Nu am gasit produsul");
+      return null;
+    }
+  } catch (err) {
+    console.log("Eroare la query");
+    console.log(err);
+    return null;
+  }
+};
 
 module.exports = Products;

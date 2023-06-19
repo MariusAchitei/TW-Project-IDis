@@ -25,6 +25,9 @@ const sessionMiddleware = clientSessions({
 
 const server = http.createServer((req, res) => {
   let { method, url } = req;
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   sessionMiddleware(req, res, () => {
     switch (true) {
       case method === "GET" && url === "/login":
@@ -70,6 +73,9 @@ const server = http.createServer((req, res) => {
           console.log("profile");
           await profileController.profileGet(req, res);
         });
+        break;
+      case method === "GET" && url === "/api/products":
+        apiController.getProducts(req, res);
         break;
       case req.url.match(/^\/api\/products\/\w+\/reviews$/) &&
         req.method === "GET":

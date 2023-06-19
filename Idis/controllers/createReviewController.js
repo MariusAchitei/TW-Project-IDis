@@ -28,7 +28,16 @@ createReviewController.createReviewPost = (req, res) => {
 
     pool.query(
       query,
-      [user, , , , , formatdata.body, formatdata.mySelect2, formatdata.title],
+      [
+        user,
+        formatdata.productId,
+        formatdata.price,
+        formatdata.bought_on,
+        formatdata.store,
+        formatdata.body,
+        formatdata.mySelect2,
+        formatdata.title,
+      ],
       (err, result) => {
         if (err) {
           console.error("Error executing query: " + err.stack);
@@ -37,7 +46,7 @@ createReviewController.createReviewPost = (req, res) => {
         } else {
           console.log(req.body);
           res.statusCode = 302;
-          res.setHeader("Location", "/views/profile.html");
+          res.setHeader("Location", "/profile");
           res.end();
         }
       }

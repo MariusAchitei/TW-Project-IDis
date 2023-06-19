@@ -21,43 +21,68 @@
                 </h2>
             </a>
     </nav>
-        <form class="form" action="/createReview" method="POST">
-            <div class="title">Create Review</div>
-            <div class="subtitle">Enter details</div>
-            <div class="form-group">
-                <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
-                <select class="form-control" id="mySelect1" name="mySelect1">
-                    <option value="" selected disabled>Select Product</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
-                <select class="form-control" id="mySelect2" name="mySelect2">
-                    <option value="" selected disabled>Select Rating</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Review Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Review</label>
-                <textarea class="form-control" id="body" name="body" rows="10" cols="100"
-                    placeholder="Enter your review">Enter your review
+    <form class="form" action="/createReview" method="POST">
+        <div class="title">Create Review</div>
+        <div class="subtitle">Enter details</div>
+        <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
+            <select class="form-control" id="productId" name="productId">
+                <option value="" selected disabled>Select Product</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
+            <select class="form-control" id="mySelect2" name="mySelect2">
+                <option value="" selected disabled>Select Rating</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="title">Review Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Enter the price">
+        </div>
+        <div class="form-group">
+            <label for="price">Store</label>
+            <input type="text" class="form-control" id="store" name="store" placeholder="Enter the store">
+        </div>
+        <div class="input-container ic2">
+            <input id="bought_on" name="bought_on" class="input" type="date" placeholder=" " required />
+            <div class="cut"></div>
+            <label for="bought_on" class="placeholder">Bought on</label>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Review</label>
+            <textarea class="form-control" id="body" name="body" rows="10" cols="100" placeholder="Enter your review">Enter your review
                 </textarea>
-            </div>
-            <button type="submit" class="submit">Submit</button>
-        </form>
+        </div>
+        <button type="submit" class="submit">Submit</button>
+    </form>
 </body>
+<script>
+    fetch('http://127.0.0.1:3000/api/products')
+        .then(response => response.json())
+        .then(data => {
+            let productId = document.getElementById('productId');
+            data.forEach(element => {
+                let option = document.createElement('option');
+                option.value = element.id;
+                option.text = element.name;
+                productId.appendChild(option);
+            });
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle any errors
+            console.error(error);
+        });
+</script>
 
 </html>
