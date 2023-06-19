@@ -21,13 +21,12 @@
                 </h2>
             </a>
     </nav>
-    <div class="form">
-        <form>
+        <form class="form" action="/createReview" method="POST">
             <div class="title">Create Review</div>
             <div class="subtitle">Enter details</div>
             <div class="form-group">
                 <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="mySelect1" name="mySelect1">
                     <option value="" selected disabled>Select Product</option>
                     <option>1</option>
                     <option>2</option>
@@ -38,7 +37,7 @@
             </div>
             <div class="form-group">
                 <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="mySelect2" name="mySelect2">
                     <option value="" selected disabled>Select Rating</option>
                     <option>1</option>
                     <option>2</option>
@@ -49,17 +48,16 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Review Title</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter a title">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Review</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="100"
+                <textarea class="form-control" id="body" name="body" rows="10" cols="100"
                     placeholder="Enter your review">Enter your review
                 </textarea>
             </div>
+            <button type="submit" class="submit">Submit</button>
         </form>
-        <a href="product.html"><button type="text" class="submit">Submit</button></a>
-    </div>
 </body>
 
 </html>

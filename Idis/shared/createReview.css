@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-transform: full-width;
+  text-transform: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   list-style: none;
   text-decoration: none;

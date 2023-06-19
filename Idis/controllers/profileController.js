@@ -10,9 +10,6 @@ let profileController = {};
 profileController.profileGet = async (req, res) => {
   let user = await Users.getById(req.locals.userId);
   fs.readFile("views/profile.html", "utf8", (err, data) => {
-    console.log("AM PRIMIT UTILIZATORUL");
-    console.log(user);
-
     if (user === null) {
       console.error("Error reading profile.html", err);
       res.writeHead(500, { "Content-Type": "text/plain" });

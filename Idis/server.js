@@ -12,6 +12,7 @@ const loginController = require("./controllers/loginController");
 const homeController = require("./controllers/homeController");
 const profileController = require("./controllers/profileController");
 const Utils = require("./utils");
+const createReviewController = require("./controllers/createReviewController");
 
 const sessionMiddleware = clientSessions({
   cookieName: "session",
@@ -23,36 +24,55 @@ const sessionMiddleware = clientSessions({
 const server = http.createServer((req, res) => {
   let { method, url } = req;
   sessionMiddleware(req, res, () => {
-    if (method === "GET" && url === "/login") {
-      console.log("login");
-      loginController.loginGet(req, res);
-    } else if (method === "POST" && url === "/login")
-      loginController.loginPost(req, res);
-    else if (method === "POST" && url === "/register")
-      loginController.registerPost(req, res);
-    else if (method === "GET" && url == "/register")
-      loginController.registerGet(req, res);
-    else if (method === "GET" && url === "/") Utils.redirectTo("/login", res);
-    else if (method === "GET" && url === "/home") {
-      console.log("home");
-      requireAuthentication(req, res, () => {
-        homeController.homeGet(req, res);
-      });
-    } else if (method === "GET" && url === "/createReview") {
-      requireAuthentication(req, res, () => {
-        homeController.createReviewGet(req, res);
-      });
-    } else if (method === "GET" && url === "/profile") {
-      console.log("profile");
-      requireAuthentication(req, res, async () => {
+    switch (true) {
+      case method === "GET" && url === "/login":
+        console.log("login");
+        loginController.loginGet(req, res);
+        break;
+      case method === "POST" && url === "/login":
+        loginController.loginPost(req, res);
+        break;
+      case method === "POST" && url === "/register":
+        loginController.registerPost(req, res);
+        break;
+      case method === "GET" && url === "/register":
+        loginController.registerGet(req, res);
+        break;
+      case method === "GET" && url === "/":
+        Utils.redirectTo("/login", res);
+        break;
+      case method === "GET" && url === "/home":
+        console.log("home");
+        requireAuthentication(req, res, () => {
+          homeController.homeGet(req, res);
+        });
+        break;
+      case method === "GET" && url === "/createReview":
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
+        requireAuthentication(req, res, () => {
+          createReviewController.createReviewGet(req, res);
+        });
+        break;
+      case method === "POST" && url === "/createReview":
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
+        requireAuthentication(req, res, () => {
+          createReviewController.createReviewPost(req, res);
+        });
+        break;
+      case method === "GET" && url === "/profile":
         console.log("profile");
-        await profileController.profileGet(req, res);
-      });
-    } else if (method === "GET" || method === "HEAD")
-      Utils.sendResources(req, res, url);
-    else {
-      res.statusCode = 404;
-      res.end("Not Found");
+        requireAuthentication(req, res, async () => {
+          console.log("profile");
+          await profileController.profileGet(req, res);
+        });
+        break;
+      case method === "GET" || method === "HEAD":
+        Utils.sendResources(req, res, url);
+        break;
+      default:
+        res.statusCode = 404;
+        res.end("Not Found");
+        break;
     }
   });
 });
