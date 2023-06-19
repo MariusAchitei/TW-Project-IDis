@@ -19,11 +19,7 @@ let reviewComponent = `<div class="post-wrap">
         </div>
         <div class="review">
             <div class="rating">
-                <img src="../shared/img/star.png" alt="">
-                <img src="../shared/img/star.png" alt="">
-                <img src="../shared/img/star.png" alt="">
-                <img src="../shared/img/star.png" alt="">
-                <img src="../shared/img/star.png" alt="">
+                {{star}}
             </div>
             <div class="review-title">
                 <span>{{title}}</span>
@@ -39,4 +35,5 @@ let reviewComponent = `<div class="post-wrap">
         </div>
     </div>
 </div>`;
-module.exports = reviewComponent;
+let starComponent = `<img src="../shared/img/star.png" alt="">`;
+module.exports = { reviewComponent, starComponent };

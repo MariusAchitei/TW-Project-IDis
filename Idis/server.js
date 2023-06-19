@@ -40,6 +40,9 @@ const server = http.createServer((req, res) => {
       case method === "GET" && url === "/register":
         loginController.registerGet(req, res);
         break;
+      case method === "GET" && url === "/logout":
+        loginController.logout(req, res);
+        break;
       case method === "GET" && url === "/":
         Utils.redirectTo("/login", res);
         break;
