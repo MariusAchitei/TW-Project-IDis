@@ -14,6 +14,7 @@ homeController.homeGet = async (req, res) => {
   let reviews = await Reviews.getAll();
   reviews = reviews?.map((review) =>
     reviewComponent
+      .replace("{{productId}}", review.product_id)
       .replace("{{title}}", review.title)
       .replace("{{body}}", review.body)
       .replace("{{price}}", review.price)

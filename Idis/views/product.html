@@ -47,12 +47,8 @@
                     <span>{{name}}</span>
                 </div>
                 <div class="rating rating-sm">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <span>3 Reviews</span>
+                    {{#avgStars}}
+                    <span>{{totalReviews}} Reviews</span>
                 </div>
                 <div class="review-text">
                     <span>{{description}}
@@ -104,37 +100,33 @@
                             <div class="progress-bar">
                                 <span class="progress"></span>
                             </div>
-                            <span class="count">3</span>
+                            <span class="count">{{fiveStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">4</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{fourStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">3</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{threeStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">2</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{twoStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">1</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{oneStar}}</span>
                         </div>
                     </div>
                     <div class="global">
-                        <span class="global-value">0.0</span>
+                        <span class="global-value">{{average}}</span>
                         <div class="rating-bg rating">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
+                            {{#avgStars}}
                         </div>
                         <span class="total-reviews">0</span>
                     </div>

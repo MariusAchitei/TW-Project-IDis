@@ -72,17 +72,26 @@ loginController.registerPost = (req, res) => {
     body += chunk;
   });
   req.on("end", () => {
-    const { firstname, lastname, email, country, city, borndate, password } =
-      qs.parse(body);
+    let {
+      firstname,
+      lastname,
+      email,
+      country,
+      city,
+      borndate,
+      password,
+      profile,
+    } = qs.parse(body);
+    profile = profile ? profile : "profile-default.png";
 
     const query = `
-        INSERT INTO users (username, email,country,city,born_date, password_hash)
-        VALUES ($1, $2, $3,$4,$5,$6)
+        INSERT INTO users (username, email,country,city,born_date, password_hash, profile)
+        VALUES ($1, $2, $3,$4,$5,$6, $7)
       `;
     let username = firstname + " " + lastname;
     pool.query(
       query,
-      [username, email, country, city, borndate, password],
+      [username, email, country, city, borndate, password, profile],
       (err, result) => {
         if (err) {
           console.error("Error executing query: " + err.stack);

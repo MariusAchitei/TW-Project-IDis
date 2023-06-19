@@ -10,6 +10,7 @@ let reviewComponent = `<div class="post-wrap">
             <img src="../shared/icon/three-dots.svg" class="icon1">
         </span>
     </div>
+    <a href="/products/{{productId}}">
     <div class="post">
         <div class="product-details">
             <div class="product-name">{{name}}</div>
@@ -34,6 +35,7 @@ let reviewComponent = `<div class="post-wrap">
             <div class="bought-on review-detail">Bought on:<span>{{bought_on}}</span></div>
         </div>
     </div>
+    </a>
 </div>`;
 let starComponent = `<img src="../shared/img/star.png" alt="">`;
 module.exports = { reviewComponent, starComponent };
