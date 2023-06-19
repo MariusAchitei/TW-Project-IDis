@@ -98,4 +98,10 @@ loginController.registerPost = (req, res) => {
     );
   });
 };
+
+loginController.logout = (req, res) => {
+  res.setHeader("Set-Cookie", "token=; Max-Age=0");
+  Utils.redirectTo("/login", res);
+};
+
 module.exports = loginController;

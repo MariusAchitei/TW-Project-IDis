@@ -12,7 +12,7 @@ Users.getById = async (id) => {
       let user = result.rows[0];
       //   console.log("AM UTILIZATORULlllllllllll");
       console.log(user);
-      user.born_date = user.born_date.toLocaleDateString();
+      user.born_date = user.born_date?.toLocaleDateString();
       return user;
     } else {
       console.log("Nu am gasit utilizatorul");

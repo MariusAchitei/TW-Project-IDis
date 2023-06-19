@@ -11,6 +11,8 @@ const { requireAuthentication } = require("./middleware");
 const loginController = require("./controllers/loginController");
 const homeController = require("./controllers/homeController");
 const profileController = require("./controllers/profileController");
+const productsController = require("./controllers/productsController");
+const apiController = require("./controllers/apiController");
 const Utils = require("./utils");
 const createReviewController = require("./controllers/createReviewController");
 
@@ -61,6 +63,19 @@ const server = http.createServer((req, res) => {
         break;
       case method === "GET" && url === "/profile":
         console.log("profile");
+        requireAuthentication(req, res, async () => {
+          console.log("profile");
+          await profileController.profileGet(req, res);
+        });
+        break;
+      case req.url.match(/^\/api\/products\/\w+\/reviews$/) &&
+        req.method === "GET":
+        apiController.getReviews(req, res);
+        break;
+      case req.url.match(/\/products\/\w+/) && req.method === "GET":
+        productsController.productGet(req, res);
+        break;
+      case method === "GET" && url === "/profile":
         requireAuthentication(req, res, async () => {
           console.log("profile");
           await profileController.profileGet(req, res);
