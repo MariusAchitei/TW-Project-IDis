@@ -19,6 +19,7 @@ productsController.productGet = async (req, res) => {
 
   let reviewsComponents = reviews?.map((review) =>
     reviewComponent
+      .replace("{{productId}}", review.product_id)
       .replace("{{title}}", review.title)
       .replace("{{body}}", review.body)
       .replace("{{price}}", review.price)
@@ -43,7 +44,7 @@ productsController.productGet = async (req, res) => {
         .replace("{{name}}", product.name)
         .replace("{{description}}", product.description)
         .replace("{{price}}", product.price)
-        .replace("{{average}}", average)
+        .replace("{{average}}", average.toFixed(2))
         .replace("{{totalReviews}}", reviews.length)
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
