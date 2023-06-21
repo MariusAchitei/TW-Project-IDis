@@ -392,8 +392,6 @@ main {
   height: 1.5rem;
   width: 1.5rem;
 }
-
-/* ..............color.......... */
 .color {
   margin-top: 2rem;
 }
@@ -429,7 +427,7 @@ main {
 .choose-color .active {
   border: 5px solid var(--color-gry);
 }
-/* ................backgournd............ */
+
 .background {
   margin-top: 2rem;
 }
@@ -472,9 +470,7 @@ main {
 .chosse-backgorund > div:nth-child(3) {
   background: hsl(0, 0%, 0%);
 }
-/*......................THEME CUSTOMIZE..END................... */
 
-/* TABLET  and PHONE*/
 @media (max-width: 991px) {
   .container {
     width: 96%;
