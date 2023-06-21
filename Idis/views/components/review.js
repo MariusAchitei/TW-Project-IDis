@@ -37,5 +37,19 @@ let reviewComponent = `<div class="post-wrap">
     </div>
     </a>
 </div>`;
+function addReviewComponent(review) {
+  return reviewComponent
+    .replace("{{productId}}", review.product_id)
+    .replace("{{title}}", review.title)
+    .replace("{{body}}", review.body)
+    .replace("{{price}}", review.price)
+    .replace("{{store}}", review.store)
+    .replace("{{bought_on}}", review.bought_on)
+    .replace("{{username}}", review.username)
+    .replace("{{profile}}", review.profile)
+    .replace("{{name}}", review.name)
+    .replace("{{photo}}", review.photo)
+    .replace("{{star}}", starComponent.repeat(review.rating));
+}
 let starComponent = `<img src="../shared/img/star.png" alt="">`;
-module.exports = { reviewComponent, starComponent };
+module.exports = { addReviewComponent, starComponent };

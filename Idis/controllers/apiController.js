@@ -12,4 +12,9 @@ apiController.getProducts = async (req, res) => {
   const products = await Products.getAll();
   res.end(JSON.stringify(products));
 };
+apiController.getProduct = async (req, res) => {
+  const id = req.url.split("/")[3];
+  const product = await Products.getById(id);
+  res.end(JSON.stringify(product));
+};
 module.exports = apiController;

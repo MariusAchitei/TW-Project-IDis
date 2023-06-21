@@ -21,7 +21,8 @@ loginController.loginPost = (req, res) => {
     body += chunk;
   });
   req.on("end", () => {
-    const { email, password } = qs.parse(body);
+    let { email, password } = qs.parse(body);
+    password = Utils.hash256(password);
 
     pool.query(
       "SELECT * FROM users WHERE email = $1 AND password_hash = $2",
@@ -82,6 +83,7 @@ loginController.registerPost = (req, res) => {
       password,
       profile,
     } = qs.parse(body);
+    password = Utils.hash256(password);
     profile = profile ? profile : "profile-default.png";
 
     const query = `

@@ -48,7 +48,7 @@
                 </div>
                 <div class="rating rating-sm">
                     {{#avgStars}}
-                    <span>{{totalReviews}} Reviews</span>
+                    <span>{{totalReviews}}</span><span>Reviews</span>
                 </div>
                 <div class="review-text">
                     <span>{{description}}
@@ -85,7 +85,8 @@
                     <h3>setings</h3>
                 </a>
 
-                <a href="/createReview"><label for="creatPost" class="btn btn-primary">create review</label></a>
+                <a href="/createReview?product={{productId}}"><label for="creatPost" class="btn btn-primary">create
+                        review</label></a>
 
             </div>
 
@@ -139,7 +140,16 @@
 <footer>
 
 </footer>
-<script src="script.js"></script>
+<script>
+    const totalReviews = document.querySelector("body > main.container > div > div > div.review > div.rating.rating-sm > span").textContent;
+    let progresBars = document.querySelectorAll('.rate-box');
+    progresBars.forEach((bar) => {
+        let numberReviews = bar.querySelector('.count').textContent;
+        let percentage = bar.querySelector('.progress').style.width = (numberReviews / totalReviews) * 100 + "%";
+
+    })
+</script>
+<script src="../shared/script.js"></script>
 </body>
 <script src="scriptNavBar.js"></script>
 

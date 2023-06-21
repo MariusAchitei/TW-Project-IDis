@@ -2,7 +2,7 @@ const Products = require("../models/Products");
 const Reviews = require("../models/Review");
 const fs = require("fs");
 const {
-  reviewComponent,
+  addReviewComponent,
   starComponent,
 } = require("../views/components/review");
 
@@ -18,18 +18,7 @@ productsController.productGet = async (req, res) => {
     : 0;
 
   let reviewsComponents = reviews?.map((review) =>
-    reviewComponent
-      .replace("{{productId}}", review.product_id)
-      .replace("{{title}}", review.title)
-      .replace("{{body}}", review.body)
-      .replace("{{price}}", review.price)
-      .replace("{{store}}", review.store)
-      .replace("{{bought_on}}", review.bought_on)
-      .replace("{{username}}", review.username)
-      .replace("{{profile}}", review.profile)
-      .replace("{{name}}", review.name)
-      .replace("{{photo}}", review.photo)
-      .replace("{{star}}", starComponent.repeat(review.rating))
+    review ? addReviewComponent(review) : ""
   );
 
   fs.readFile("views/product.html", "utf8", (err, data) => {
@@ -46,6 +35,7 @@ productsController.productGet = async (req, res) => {
         .replace("{{price}}", product.price)
         .replace("{{average}}", average.toFixed(2))
         .replace("{{totalReviews}}", reviews.length)
+        .replace("{{productId}}", product.id)
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
         .replace(

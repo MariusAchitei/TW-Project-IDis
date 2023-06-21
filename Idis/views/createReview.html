@@ -66,23 +66,8 @@
         <button type="submit" class="submit">Submit</button>
     </form>
 </body>
-<script>
-    fetch('http://127.0.0.1:3000/api/products')
-        .then(response => response.json())
-        .then(data => {
-            let productId = document.getElementById('productId');
-            data.forEach(element => {
-                let option = document.createElement('option');
-                option.value = element.id;
-                option.text = element.name;
-                productId.appendChild(option);
-            });
-            console.log(data);
-        })
-        .catch(error => {
-            // Handle any errors
-            console.error(error);
-        });
+<script src="../shared/createReview.js">
+
 </script>
 
 </html>

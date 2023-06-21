@@ -25,57 +25,64 @@ const sessionMiddleware = clientSessions({
 
 const server = http.createServer((req, res) => {
   let { method, url } = req;
+  // let [path, query] = url.split("?");
+  let path = url.split("?")[0];
+  let query = url.split("?")[1];
+
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   sessionMiddleware(req, res, () => {
     switch (true) {
-      case method === "GET" && url === "/login":
+      case method === "GET" && path === "/login":
         console.log("login");
         loginController.loginGet(req, res);
         break;
-      case method === "POST" && url === "/login":
+      case method === "POST" && path === "/login":
         loginController.loginPost(req, res);
         break;
-      case method === "POST" && url === "/register":
+      case method === "POST" && path === "/register":
         loginController.registerPost(req, res);
         break;
-      case method === "GET" && url === "/register":
+      case method === "GET" && path === "/register":
         loginController.registerGet(req, res);
         break;
-      case method === "GET" && url === "/logout":
+      case method === "GET" && path === "/logout":
         loginController.logout(req, res);
         break;
-      case method === "GET" && url === "/":
+      case method === "GET" && path === "/":
         Utils.redirectTo("/login", res);
         break;
-      case method === "GET" && url === "/home":
+      case method === "GET" && path === "/home":
         console.log("home");
         requireAuthentication(req, res, () => {
           homeController.homeGet(req, res);
         });
         break;
-      case method === "GET" && url === "/createReview":
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
+      case method === "GET" && path === "/createReview":
+        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
         requireAuthentication(req, res, () => {
           createReviewController.createReviewGet(req, res);
         });
         break;
-      case method === "POST" && url === "/createReview":
+      case method === "POST" && path === "/createReview":
         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
         requireAuthentication(req, res, () => {
           createReviewController.createReviewPost(req, res);
         });
         break;
-      case method === "GET" && url === "/profile":
+      case method === "GET" && path === "/profile":
         console.log("profile");
         requireAuthentication(req, res, async () => {
           console.log("profile");
           await profileController.profileGet(req, res);
         });
         break;
-      case method === "GET" && url === "/api/products":
+      case method === "GET" && path === "/api/products":
         apiController.getProducts(req, res);
+        break;
+      case req.url.match(/^\/api\/products\/\w+/) && req.method === "GET":
+        apiController.getProduct(req, res);
         break;
       case req.url.match(/^\/api\/products\/\w+\/reviews$/) &&
         req.method === "GET":
@@ -84,14 +91,14 @@ const server = http.createServer((req, res) => {
       case req.url.match(/\/products\/\w+/) && req.method === "GET":
         productsController.productGet(req, res);
         break;
-      case method === "GET" && url === "/profile":
+      case method === "GET" && path === "/profile":
         requireAuthentication(req, res, async () => {
           console.log("profile");
           await profileController.profileGet(req, res);
         });
         break;
       case method === "GET" || method === "HEAD":
-        Utils.sendResources(req, res, url);
+        Utils.sendResources(req, res, path);
         break;
       default:
         res.statusCode = 404;
