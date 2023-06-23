@@ -6,9 +6,12 @@ let reviewComponent = `<div class="post-wrap">
         <div class="info">
             <h3>{{username}}</h3>
         </div>
-        <span class="edit">
-            <img src="../shared/icon/three-dots.svg" class="icon1">
-        </span>
+        <div class="edit">
+            <div class="buttons">
+    <button class="btn btn-primary new-post">Edit</button>
+    <button class="btn btn-primary new-post">Delete</button>
+  </div>
+        </div>
     </div>
     <a href="/products/{{productId}}">
     <div class="post">

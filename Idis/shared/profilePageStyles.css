@@ -53,9 +53,25 @@ body {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
+.icon1 {
+  height: 1.4rem;
+  width: 1.4rem;
+}
 .head .edit {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
   /* align-self: flex-end; */
   margin-left: auto;
+  z-index: 1;
+}
+
+.head .edit:hover {
+  background-color: var(--color-dark-transparent);
+}
+.buttons {
+  position: absolute;
 }
 .head > div {
   margin-right: 0.5rem;

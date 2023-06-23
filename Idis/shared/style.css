@@ -62,9 +62,17 @@ img {
 .head .edit {
   padding: 2px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .head .edit:hover {
   background-color: var(--color-dark-transparent);
+}
+.buttons {
+  position: absolute;
+  top: 30px;
+  left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 .icon2 {
   height: 1.2rem;
