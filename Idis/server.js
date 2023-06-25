@@ -14,7 +14,7 @@ const profileController = require("./controllers/profileController");
 const productsController = require("./controllers/productsController");
 const apiController = require("./controllers/apiController");
 const Utils = require("./utils");
-const createReviewController = require("./controllers/createReviewController");
+const createReviewController = require("./controllers/reviewController");
 
 const sessionMiddleware = clientSessions({
   cookieName: "session",
@@ -60,22 +60,49 @@ const server = http.createServer((req, res) => {
         });
         break;
       case method === "GET" && path === "/createReview":
-        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
         requireAuthentication(req, res, () => {
           createReviewController.createReviewGet(req, res);
         });
         break;
       case method === "POST" && path === "/createReview":
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAADIFERIT");
         requireAuthentication(req, res, () => {
           createReviewController.createReviewPost(req, res);
         });
+
         break;
-      case method === "GET" && path === "/profile":
-        console.log("profile");
+      case req.url.match(/\/changePassword\/\w+/) && method === "GET":
         requireAuthentication(req, res, async () => {
-          console.log("profile");
+          loginController.resetPasswordGet(req, res);
+        });
+        break;
+      case req.url.match(/\/changePassword\/\w+/) && method === "PUT":
+        requireAuthentication(req, res, () => {
+          loginController.resetPasswordPut(req, res);
+        });
+        break;
+      case method === "PUT" && path === "/profile":
+        requireAuthentication(req, res, async () => {
           await profileController.profileGet(req, res);
+        });
+        break;
+      case req.url.match(/\/editReview\/\w+/) && method === "GET":
+        requireAuthentication(req, res, () => {
+          createReviewController.editReviewGet(req, res);
+        });
+        break;
+      case req.url.match(/\/editReview\/\w+/) && method === "PUT":
+        requireAuthentication(req, res, () => {
+          createReviewController.editReviewPut(req, res);
+        });
+        break;
+      case method === "PUT" && path === "/profile":
+        requireAuthentication(req, res, async () => {
+          await profileController.profileGet(req, res);
+        });
+        break;
+      case req.url.match(/\/deleteReview\/\w+/) && req.method === "GET":
+        requireAuthentication(req, res, () => {
+          apiController.deleteReview(req, res);
         });
         break;
       case method === "GET" && path === "/api/products":
@@ -87,6 +114,12 @@ const server = http.createServer((req, res) => {
       case req.url.match(/^\/api\/products\/\w+\/reviews$/) &&
         req.method === "GET":
         apiController.getReviews(req, res);
+        break;
+      case req.url.match(/^\/api\/reviews\/\w+/) && req.method === "GET":
+        apiController.getReview(req, res);
+        break;
+      case req.url.match(/^\/api\/users\/\w+/) && req.method === "GET":
+        apiController.getUser(req, res);
         break;
       case req.url.match(/\/products\/\w+/) && req.method === "GET":
         productsController.productGet(req, res);

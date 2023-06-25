@@ -13,9 +13,47 @@ loginController.loginGet = (req, res) => {
 loginController.registerGet = (req, res) => {
   Utils.sendResources(req, res, "/views/register.html");
 };
+loginController.resetPasswordGet = (req, res) => {
+  Utils.sendResources(req, res, "/views/resetPassword.html");
+};
+loginController.resetPasswordPut = (req, res) => {
+  let body = "";
+  req.on("data", (chunk) => {
+    body += chunk;
+  });
+  req.on("end", () => {
+    const formatData = JSON.parse(body);
+    console.log(
+      formatData.email,
+      formatData.password,
+      formatData.newpassword,
+      formatData.id
+    );
+    const query = "UPDATE users SET password_hash = $1 WHERE id=$2 ";
+    pool.query(
+      query,
+      [Utils.hash256(formatData.newpassword.toString()), formatData.id],
+      (err, result) => {
+        if (err) {
+          console.error("Error executing query", err);
+          res.statusCode = 500;
+          res.end("Internal Server Error");
+        } else {
+          if (formatData.password !== formatData.newpassword) {
+            res.statusCode = 302;
+            res.setHeader("Location", "/profile");
+            res.end();
+          } else {
+            res.statusCode = 401;
+            res.end("Please choose a different password!");
+          }
+        }
+      }
+    );
+  });
+};
 
 loginController.loginPost = (req, res) => {
-  //   console.log("FDSKBGUIKDSJBILN");
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -52,14 +90,6 @@ loginController.loginPost = (req, res) => {
             );
 
             Utils.redirectTo("/profile", res);
-            // res.writeHead(200, { "Content-Type": "application/json" });
-
-            // res.end(
-            //   JSON.stringify({ success: true, message: "User logged in" })
-            // );
-          } else {
-            res.statusCode = 401;
-            res.end("Invalid credentials");
           }
         }
       }
@@ -114,5 +144,4 @@ loginController.logout = (req, res) => {
   res.setHeader("Set-Cookie", "token=; Max-Age=0");
   Utils.redirectTo("/login", res);
 };
-
 module.exports = loginController;

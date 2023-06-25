@@ -35,7 +35,7 @@ productsController.productGet = async (req, res) => {
         .replace("{{price}}", product.price)
         .replace("{{average}}", average.toFixed(2))
         .replace("{{totalReviews}}", reviews.length)
-        .replace("{{productId}}", product.id)
+        .replace("{{productId}}", id)
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
         .replace("{{#avgStars}}", starComponent.repeat(Math.round(average)))
         .replace(

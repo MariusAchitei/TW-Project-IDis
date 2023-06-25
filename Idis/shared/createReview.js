@@ -1,8 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
 const product = urlParams.get("product");
-console.log("+++++");
-console.log(product);
-console.log("+++++");
 if (product != null) {
   fetch(`http://127.0.0.1:3000/api/products/${product}`)
     .then((response) => response.json())

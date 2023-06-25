@@ -1,16 +1,12 @@
-let reviewComponent = `<div class="post-wrap">
+let reviewComponent = `
+<div class="post-wrap">
     <div class="head">
         <div class="profile-phots">
             <img src="../shared/img/{{profile}}" alt="">
         </div>
         <div class="info">
             <h3>{{username}}</h3>
-        </div>
-        <div class="edit">
-            <div class="buttons">
-    <button class="btn btn-primary new-post">Edit</button>
-    <button class="btn btn-primary new-post">Delete</button>
-  </div>
+            
         </div>
     </div>
     <a href="/products/{{productId}}">
@@ -42,17 +38,18 @@ let reviewComponent = `<div class="post-wrap">
 </div>`;
 function addReviewComponent(review) {
   return reviewComponent
-    .replace("{{productId}}", review.product_id)
-    .replace("{{title}}", review.title)
-    .replace("{{body}}", review.body)
-    .replace("{{price}}", review.price)
-    .replace("{{store}}", review.store)
-    .replace("{{bought_on}}", review.bought_on)
-    .replace("{{username}}", review.username)
-    .replace("{{profile}}", review.profile)
-    .replace("{{name}}", review.name)
-    .replace("{{photo}}", review.photo)
-    .replace("{{star}}", starComponent.repeat(review.rating));
+    .replaceAll("{{reviewId}}", review.id)
+    .replaceAll("{{productId}}", review.product_id)
+    .replaceAll("{{title}}", review.title)
+    .replaceAll("{{body}}", review.body)
+    .replaceAll("{{price}}", review.price)
+    .replaceAll("{{store}}", review.store)
+    .replaceAll("{{bought_on}}", review.bought_on)
+    .replaceAll("{{username}}", review.username)
+    .replaceAll("{{profile}}", review.profile)
+    .replaceAll("{{name}}", review.name)
+    .replaceAll("{{photo}}", review.photo)
+    .replaceAll("{{star}}", starComponent.repeat(review.rating));
 }
 let starComponent = `<img src="../shared/img/star.png" alt="">`;
 module.exports = { addReviewComponent, starComponent };

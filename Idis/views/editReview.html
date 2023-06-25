@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Review</title>
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="../shared/createReview.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="/home">
+                <h2 class="logo">
+                    IDis
+                </h2>
+            </a>
+    </nav>
+    <form class="form" onsubmit="submitForm(event)">
+        <div class="title">Create Review</div>
+        <div class="subtitle">Enter details</div>
+        <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
+            <select class="form-control" id="productId" name="productId" required>
+                <option value="" selected disabled>Select Product</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Select Product</label> -->
+            <select class="form-control" id="mySelect2" name="mySelect2" required>
+                <option value="" selected disabled>Select Rating</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="title">Review Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Enter the price" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Store</label>
+            <input type="text" class="form-control" id="store" name="store" placeholder="Enter the store" required>
+        </div>
+        <div class="input-container ic2">
+            <input id="bought_on" name="bought_on" class="input" type="date" placeholder=" " required />
+            <div class="cut"></div>
+            <label for="bought_on" class="placeholder">Bought on</label>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Review</label>
+            <textarea class="form-control" id="body" name="body" rows="10" cols="100" placeholder="Enter your review">Enter your review
+                </textarea>
+        </div>
+        <button type="submit" class="submit">Submit</button>
+    </form>
+</body>
+<script>
+const id = window.location.href.split("/")[4];
+if(id!==null)
+{
+     fetch(`http://127.0.0.1:3000/api/reviews/${id}`)
+    .then((response) => response.json())
+    .then((reviewFetched) => {
+        //fetching productId
+      let productId = document.getElementById("productId");
+      let option = document.createElement("option");
+      option.value = reviewFetched.id;
+      option.text = reviewFetched.name;
+      option.setAttribute("selected", true);
+      productId.appendChild(option);
+
+      //fetching rating
+      let rating = document.getElementById("mySelect2");
+      let option2 = document.createElement("option");
+      option2.value = reviewFetched.rating;
+      option2.text = reviewFetched.rating;
+      option2.setAttribute("selected", true);
+      rating.appendChild(option2);
+
+      //fetching title
+      let title = document.getElementById("title");
+      title.value = reviewFetched.title;
+
+      //fetching price
+      let price = document.getElementById("price");
+      price.value=reviewFetched.price;
+
+      //fecthing store
+      let store=document.getElementById("store");
+      store.value=reviewFetched.store;
+
+      //fecthing bought_on
+      let boughtOnInput = document.getElementById("bought_on");
+    let boughtOnDate = new Date(reviewFetched.bought_on);
+    if (!isNaN(boughtOnDate.getTime())) {
+      // Check if the date is valid
+      let formattedBoughtOnDate = boughtOnDate.toISOString().split("T")[0];
+      boughtOnInput.value = formattedBoughtOnDate; // Set the value of the bought_on input field
+    };
+      //fetching body
+      let bodyInput = document.getElementById("body");
+      bodyInput.value=reviewFetched.body;
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error(error);
+    });
+}
+  function submitForm(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const action = form.getAttribute('action');
+
+    const formatdata = {};
+  for (let [key, value] of formData.entries()) {
+    formatdata[key] = value;
+  }
+  formatdata.id = id;
+
+    fetch(`/editReview/${id}`, {
+      method: 'PUT',
+      headers: {
+      'Content-Type': 'application/json'
+    },
+      body: JSON.stringify(formatdata)
+    })
+      .then(response => {
+        if (response.ok) {
+            window.location.href="/profile";
+          
+        } else {
+          console.error('PUT request failed');
+        }
+      })
+
+      .catch(error => {
+        // Handle network errors
+        console.error('An error occurred:', error);
+      });
+  }
+</script>
+
+</html>

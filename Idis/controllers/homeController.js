@@ -30,6 +30,7 @@ homeController.homeGet = async (req, res) => {
         // .replace("{{country}}", user.country)
         // .replace("{{username}}", user.username)
         .replace("{{profile}}", user.profile)
+        .replace("{{profile}}", user.profile)
         .replace(
           "{{#each_review}}",
           reviewComponents?.reduce((acc, review) => acc + review, "")

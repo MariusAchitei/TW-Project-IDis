@@ -6,7 +6,7 @@ const Reviews = require("../models/Review");
 const {
   addReviewComponent,
   starComponent,
-} = require("../views/components/review");
+} = require("../views/components/reviewAdmin");
 
 // const requireAuthentication = require("../middleware").requireAuthentication;
 
@@ -27,11 +27,13 @@ profileController.profileGet = async (req, res) => {
       res.end("Internal Server Error");
     } else {
       let profilePage = data
+        .replace("{{userId}}", req.locals.userId)
         .replace("{{username}}", user.username)
         .replace("{{borndate}}", user.born_date)
         .replace("{{city}}", user.city)
         .replace("{{country}}", user.country)
         .replace("{{username}}", user.username)
+        .replace("{{profile}}", user.profile)
         .replace("{{profile}}", user.profile)
         .replace(
           "{{#each_review}}",
