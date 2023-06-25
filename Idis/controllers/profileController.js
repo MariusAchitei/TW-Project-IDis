@@ -4,9 +4,9 @@ const pool = require("../dbConnection");
 const Users = require("../models/Users");
 const Reviews = require("../models/Review");
 const {
-  reviewComponent,
+  addReviewComponent,
   starComponent,
-} = require("../views/components/review");
+} = require("../views/components/reviewAdmin");
 
 // const requireAuthentication = require("../middleware").requireAuthentication;
 
@@ -15,18 +15,9 @@ let profileController = {};
 profileController.profileGet = async (req, res) => {
   let user = await Users.getById(req.locals.userId);
   let reviews = await Reviews.getByUserId(req.locals.userId);
-  reviews = reviews?.map((review) =>
-    reviewComponent
-      .replace("{{title}}", review.title)
-      .replace("{{body}}", review.body)
-      .replace("{{price}}", review.price)
-      .replace("{{store}}", review.store)
-      .replace("{{bought_on}}", review.bought_on)
-      .replace("{{username}}", review.username)
-      .replace("{{profile}}", review.profile)
-      .replace("{{name}}", review.name)
-      .replace("{{photo}}", review.photo)
-      .replace("{{star}}", starComponent.repeat(review.rating))
+
+  let reviewComponents = reviews?.map((review) =>
+    review ? addReviewComponent(review) : ""
   );
 
   fs.readFile("views/profile.html", "utf8", (err, data) => {
@@ -36,15 +27,17 @@ profileController.profileGet = async (req, res) => {
       res.end("Internal Server Error");
     } else {
       let profilePage = data
+        .replace("{{userId}}", req.locals.userId)
         .replace("{{username}}", user.username)
         .replace("{{borndate}}", user.born_date)
         .replace("{{city}}", user.city)
         .replace("{{country}}", user.country)
         .replace("{{username}}", user.username)
         .replace("{{profile}}", user.profile)
+        .replace("{{profile}}", user.profile)
         .replace(
           "{{#each_review}}",
-          reviews?.reduce((acc, review) => acc + review, "")
+          reviewComponents?.reduce((acc, review) => acc + review, "")
         );
 
       res.writeHead(200, { "Content-Type": "text/html" });

@@ -47,12 +47,8 @@
                     <span>{{name}}</span>
                 </div>
                 <div class="rating rating-sm">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <img src="../shared/img/star.png" alt="">
-                    <span>3 Reviews</span>
+                    {{#avgStars}}
+                    <span>{{totalReviews}}</span><span>Reviews</span>
                 </div>
                 <div class="review-text">
                     <span>{{description}}
@@ -89,7 +85,8 @@
                     <h3>setings</h3>
                 </a>
 
-                <a href="/createReview"><label for="creatPost" class="btn btn-primary">create review</label></a>
+                <a href="/createReview?product={{productId}}"><label for="creatPost" class="btn btn-primary">create
+                        review</label></a>
 
             </div>
 
@@ -104,37 +101,33 @@
                             <div class="progress-bar">
                                 <span class="progress"></span>
                             </div>
-                            <span class="count">3</span>
+                            <span class="count">{{fiveStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">4</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{fourStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">3</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{threeStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">2</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{twoStar}}</span>
                         </div>
                         <div class="rate-box">
                             <span class="value">1</span>
                             <div class="progress-bar"><span class="progress"></span></div>
-                            <span class="count">0</span>
+                            <span class="count">{{oneStar}}</span>
                         </div>
                     </div>
                     <div class="global">
-                        <span class="global-value">0.0</span>
+                        <span class="global-value">{{average}}</span>
                         <div class="rating-bg rating">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
-                            <img src="../shared/img/star.png" alt="">
+                            {{#avgStars}}
                         </div>
                         <span class="total-reviews">0</span>
                     </div>
@@ -147,7 +140,16 @@
 <footer>
 
 </footer>
-<script src="script.js"></script>
+<script>
+    const totalReviews = document.querySelector("body > main.container > div > div > div.review > div.rating.rating-sm > span").textContent;
+    let progresBars = document.querySelectorAll('.rate-box');
+    progresBars.forEach((bar) => {
+        let numberReviews = bar.querySelector('.count').textContent;
+        let percentage = bar.querySelector('.progress').style.width = (numberReviews / totalReviews) * 100 + "%";
+
+    })
+</script>
+<script src="../shared/script.js"></script>
 </body>
 <script src="scriptNavBar.js"></script>
 

@@ -7,15 +7,15 @@ Reviews.getById = async (id) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM Reviews r JOIN Products p ON r.product_id = p.id WHERE r.id = ${id}`
+      `SELECT * FROM reviews r join products p on p.id=r.product_id WHERE r.id = ${id}`
     );
 
     if (result.rows.length > 0) {
-      let product = result.rows[0];
-      console.log(product);
-      return product;
+      let review = result.rows[0];
+      console.log(review);
+      return review;
     } else {
-      console.log("Nu am gasit produsul");
+      console.log("Nu am gasit review-ul");
       return null;
     }
   } catch (err) {
@@ -52,7 +52,7 @@ Reviews.getByUserId = async (id) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM (SELECT * FROM Reviews r JOIN users u ON r.user_id = u.id WHERE u.id = ${id}) c JOIN products p ON c.product_id = p.id`
+      `SELECT c.id,user_id,product_id,price,bought_on,title,store,body,rating,p.name,p.interest_id,p.description,p.photo,username,profile FROM (SELECT r.id,user_id,product_id,price,bought_on,title,store,body,rating,u.username,u.profile FROM Reviews r JOIN users u ON r.user_id = u.id WHERE u.id = ${id}) c JOIN products p ON c.product_id = p.id`
     );
 
     if (result.rows.length > 0) {
@@ -88,4 +88,14 @@ Reviews.getAll = async () => {
     return null;
   }
 };
+
+Reviews.deleteById = async (id) => {
+  try {
+    await pool.query(`DELETE FROM reviews WHERE id = ${id}`);
+  } catch (err) {
+    console.log("Error deleting review:", err);
+    throw err;
+  }
+};
+
 module.exports = Reviews;

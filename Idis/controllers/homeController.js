@@ -3,7 +3,7 @@ const Reviews = require("../models/Review");
 const Users = require("../models/Users");
 const fs = require("fs");
 const {
-  reviewComponent,
+  addReviewComponent,
   starComponent,
 } = require("../views/components/review");
 
@@ -12,18 +12,9 @@ let homeController = {};
 homeController.homeGet = async (req, res) => {
   let user = await Users.getById(req.locals.userId);
   let reviews = await Reviews.getAll();
-  reviews = reviews?.map((review) =>
-    reviewComponent
-      .replace("{{title}}", review.title)
-      .replace("{{body}}", review.body)
-      .replace("{{price}}", review.price)
-      .replace("{{store}}", review.store)
-      .replace("{{bought_on}}", review.bought_on)
-      .replace("{{username}}", review.username)
-      .replace("{{profile}}", review.profile)
-      .replace("{{name}}", review.name)
-      .replace("{{photo}}", review.photo)
-      .replace("{{star}}", starComponent.repeat(review.rating))
+
+  let reviewComponents = reviews?.map((review) =>
+    review ? addReviewComponent(review) : ""
   );
 
   fs.readFile("views/index.html", "utf8", (err, data) => {
@@ -39,9 +30,10 @@ homeController.homeGet = async (req, res) => {
         // .replace("{{country}}", user.country)
         // .replace("{{username}}", user.username)
         .replace("{{profile}}", user.profile)
+        .replace("{{profile}}", user.profile)
         .replace(
           "{{#each_review}}",
-          reviews?.reduce((acc, review) => acc + review, "")
+          reviewComponents?.reduce((acc, review) => acc + review, "")
         );
 
       res.writeHead(200, { "Content-Type": "text/html" });

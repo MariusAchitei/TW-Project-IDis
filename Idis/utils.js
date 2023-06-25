@@ -1,6 +1,8 @@
 const fs = require("fs");
 const mime = require("mime");
 const path = require("path");
+const crypto = require("crypto");
+require("dotenv").config();
 
 let Utils = {};
 
@@ -64,6 +66,13 @@ Utils.redirectTo = (targetUrl, res) => {
   });
   res.end();
   return true;
+};
+
+Utils.hash256 = (str) => {
+  // create a sha-256 hasher
+  const sha256Hasher = crypto.createHmac("sha256", process.env.APP_SECRET);
+  // hash the string
+  return sha256Hasher.update(str).digest("hex");
 };
 
 module.exports = Utils;
