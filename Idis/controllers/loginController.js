@@ -90,6 +90,9 @@ loginController.loginPost = (req, res) => {
             );
 
             Utils.redirectTo("/profile", res);
+          } else {
+            res.statusCode = 401;
+            res.end("Invalid credentials");
           }
         }
       }
