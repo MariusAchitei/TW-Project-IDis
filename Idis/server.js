@@ -80,11 +80,6 @@ const server = http.createServer((req, res) => {
           loginController.resetPasswordPut(req, res);
         });
         break;
-      case method === "PUT" && path === "/profile":
-        requireAuthentication(req, res, async () => {
-          await profileController.profileGet(req, res);
-        });
-        break;
       case req.url.match(/\/editReview\/\w+/) && method === "GET":
         requireAuthentication(req, res, () => {
           createReviewController.editReviewGet(req, res);
